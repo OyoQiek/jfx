@@ -1,0 +1,5 @@
+user  uid(userid),uname（user名称）,email(邮箱),upwd(密码)，sex(性别)
+user_address address_id(address_id),uid（userid）,addressname（收件人名称），cityname（城市地址），address（详细地址）,address_state（默认地址状态）,phone(手机号)
+collect  cid,uid（userid）,pid（商品id）,p_size(商品尺寸),wid(仓库id)
+product  pid(商品id),b_order（商品大类）,s_order（商品小类）,p_title（商品标题）,p_info（商品信息）,p_num(产品编号),p_cz(材质),p_price（商品价格），picadd（图片地址）
+warehouse wid(仓库id),pid,(商品id)p_size(商品尺寸),p_num(库存数量)

@@ -1,0 +1,136 @@
+.logintinfo{
+    padding: 30px 15px;
+}
+.logintinfo h5{
+    font-size: .75rem;
+    line-height: 1rem;
+}
+.logintinfo h3{
+    font-size: 1.5rem;
+    margin-top: 7px;
+    font-weight: 700;
+}
+.loginbg{
+    background: #f6f6f6;
+    padding: 10px 30px;
+    position: relative;
+}
+.loginbg h4{
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #000;
+}
+.loginbg p{
+    color: #717171;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.5rem;
+    margin: 0;
+}
+.loginbg div div{
+    padding-top: 15px;
+    position: relative;
+    font-size: .9rem;
+}
+.loginbg div div input{
+    padding: 10px 0 14px;
+    margin: 10px 0 14px;
+    width: 100%;
+    border:0;
+    outline: 0;
+    background: #f6f6f6;
+    border-bottom: 1px solid #717171;
+}
+.loginbg div div span{
+    color: #f00;
+    font-size: .5rem;
+    position: absolute;
+    right: 0;
+    display: none;
+}
+.loginbg div div label{
+    position: absolute;
+    transition: all .5s;
+    top: 30px;
+    left: 0;
+}
+.loginbg div div button{
+    margin-top: 20px;
+    font-weight: 500;
+    background: #000;
+    max-width: 340px;
+    width: 100%;
+    padding: 24px 0;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all .25s;
+}
+.loginbg div div button:hover{
+    opacity: .8;
+    top: -5px;
+}
+.forget{
+    position: absolute;
+    right: 0;
+    color: #717171
+}
+.forget:hover{
+    color: #717171
+}
+
+
+.regbg{
+    background: #f6f6f6;
+    padding: 10px 30px;
+    position: relative;
+}
+
+.regp{
+    color: #717171;
+    margin-bottom: 40px;
+    font-size: .95rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+}
+.regbg div{
+    width: 100%;
+    margin: 18px auto;
+}
+.regbg div a{
+    display: inline-block;
+    width: 100%;
+    padding: 24px 0;
+    max-width: 340px;
+    background: #000;
+    color: #fff;
+    border: 0;
+    font-size: .75rem;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all .2s;
+}
+.regbg div a:hover{
+    top: -5px;
+    opacity: .8;
+}
+.reginfo{
+    margin: 40px auto 80px;
+    max-width: 310px;
+}
+.reginfo h4{
+    font-size: .75rem;
+    font-weight: bold;
+}
+.reginfo span{
+    color: #717171;
+    font-size: .75rem;
+    display: block;
+    margin: 0 0 8px;
+}
+.reginfo p{
+    margin: 0;
+    font-size: .75rem;
+}

@@ -1,0 +1,87 @@
+.regtinfo{
+    padding: 30px 15px;
+}
+.regtinfo h5{
+    font-size: .75rem;
+    line-height: 1rem;
+}
+.regtinfo h3{
+    font-size: 1.5rem;
+    margin-top: 7px;
+    font-weight: 700;
+}
+.regtinfo p{
+    margin-top: 15px;
+    max-width: 300px;
+    margin:15px auto;
+    font-size: 1rem;
+}
+.notice{
+    text-align: center;
+    color: #717171;
+    margin: 0 0 12px;
+}
+.regform{
+    color: #717171;
+    position: relative;
+}
+.regform div{
+    padding-top: 15px;
+    position: relative;
+}
+.inputnotice{
+    position: absolute;
+    top: 55%;
+    z-index: 5;
+    transition: all .5s;
+}
+.regform select{
+    color:#717171;
+    z-index: 3;
+    width: 100%;
+    padding: 10px 0 14px;
+    border:0;
+    border-bottom: 1px solid #ccc;
+    outline: 0;
+}
+.regform select:focus{
+    border-bottom: 2px solid #000;
+}
+.regform input{
+    width: 100%;
+    padding: 10px 0 14px;
+    border:0;
+    border-bottom: 1px solid #ccc;
+    outline: 0;
+    transition: all .2s ease-in-out;
+    position: relative;
+    line-height: 1.5rem;
+}
+.regform input:focus{
+    padding-bottom: 13px;
+    border-bottom: 2px solid #000;
+}
+.regform div span{
+    color: #f00;
+    font-size: .75rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+.regform button{
+    padding: 24px 0;
+    max-width: 340px;
+    width: 100%;
+    background: #000;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    top: 0;
+    position: relative;
+    transition: all .25s;
+}
+.regform button:hover{
+    opacity: .8;
+    top: -5px;
+}

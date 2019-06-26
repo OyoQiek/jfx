@@ -1,0 +1,277 @@
+.logo{
+    width: 100%;
+    height: 100%;
+}
+#navbar{
+    background: #fff;
+    z-index: 9999;
+}
+body{
+    overflow-x:hidden;
+}
+/* 顶部登陆搜索 */
+@media screen and (max-width:767.9999px){
+    /* 顶部搜索按钮 */
+    .search{
+        position: absolute;
+        left: 100px;
+    }
+    .topleft{
+        position: absolute;
+        width: 76%;
+        top: 0;
+        z-index:99
+    }
+    .logo{
+        width: 100px !important;
+        height: auto;
+    }
+    .navborderb{
+        border-bottom:0 !important;
+        margin-top: 9px;
+    }
+    .smtopborderb{
+        padding-bottom: 16px;
+        border-bottom:1px solid #000000;
+    }
+    .nav_position{
+
+    }
+}
+.login{
+    border: 0;
+    position: absolute;
+    top: 25px !important;
+    right: -2%;
+    width: 230px !important;
+    padding: 10px 15px 30px 15px;
+    z-index: 99999;
+}
+.login div{
+    position: relative;
+}
+.login span{
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    background: transparent;
+    color: #f00;
+    display: none;
+    font-size: .75rem;
+    z-index: 3;
+}
+.login .input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: 0;
+    width: 100%;
+    margin-top: 40px;
+
+}
+.login label{
+    font-size: 0.75rem;
+    position: absolute;
+    transition: all 0.5s;
+    z-index: 2;
+}
+.login .emailnotice{
+    top: 40px;
+}
+.login .upwdnotice{
+    top:40px;
+}
+.login label{
+    font-size: 0.75rem;
+}
+.loginregforget{
+    font-size: 12px;
+}
+.search
+/*导航栏内容*/
+.dropdown:hover .nav_view{
+    display: block;
+}
+.cancelrelative{
+    position:static !important;
+    box-sizing: border-box;
+
+}
+.dropdown{
+    position: static;
+}
+.subnav{
+    position: absolute !important;
+    background: #fff;
+    left: 0;
+    width: 100vw;
+}
+.navborderb{
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+}
+.subnavborderb:hover{
+    padding-bottom: 35px;
+    border-bottom: 2px solid #000;
+}
+.navborderb:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.nav_view{
+    padding: 48px 0 30px;
+    display: flex;
+}
+
+.nav_img img{
+    width: 100%;
+    height: 250px;
+}
+@media (min-width: 768px) {
+    .nav_img img{
+        width: 100%;
+        height: 200px;
+    }
+}
+@media (min-width: 992px) {
+    .nav_img img{
+        width: 100%;
+        height: 250px;
+    }
+}
+@media (min-width: 1200px) {
+    .nav_img img{
+        width: 100%;
+        height: 300px;
+    }
+}
+/*小屏导航栏的子菜单*/
+.smsubnavt{
+    color: #000;
+    font-weight: 700;
+}
+.smsubnavt:hover{
+    color: #000;
+    font-weight: bold;
+}
+.smsubnavb{
+    padding:5px 5px;
+}
+.smsubnavb:first-child{
+    border-top:1px solid #000;
+}
+.smsubnavb:last-child{
+    border-bottom:1px solid #000;
+}
+.smsubnava{
+    color: #000;
+}
+.smsubnava:hover{
+    color: #666;
+}
+
+.nav_list{
+}
+.nav_list li:first-child{
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.nav_list li:not(:first-child){
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+}
+.nav_list li a{
+    color: #717171;
+    font-weight: 400;
+}
+/*搜索框*/
+.search_position{
+    height: 8rem;
+    position: absolute;
+    width: 100%;
+    background: #f6f6f6;
+    top: 100px;
+    left: 0px;
+}
+.search_position input{
+    border: 0;
+    outline: 0;
+    background: #f6f6f6;
+    height: 128px;
+    padding: 10px 0 14px;
+    font:inherit;
+}
+.search_btn{
+    margin-top: 0rem;
+    font-size: 0.75rem;
+    padding: 1.75rem 1rem;
+    border-radius: 0;
+    transition: all 0.25s;
+}
+.search_btn:hover{
+    margin-top: -0.25rem;
+}
+.checksh{
+    display: none;
+}
+.accountck{
+    display: none;
+}
+.account{
+    padding: 38px 30px 24px !important;
+    display: none;
+}
+.account ul li{
+    padding: 6px 0;
+}
+.account ul li a{
+    color: #717171;
+    font-size: .75rem;
+}
+.afterchecksh{
+    display: none;
+}
+
+/*foot*/
+.footpadding{
+    padding:64px 0;
+}
+.footpadding ul li:first-child{
+    font-size: 0.75rem;
+    margin-bottom: 32px;
+}
+.footpadding ul li:not(:first-child) a{
+    display: block;
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: #717171;
+}
+.footpadding div ul li:not(:first-child){
+    font-size: 0.75rem;
+    color: #717171;
+    margin-bottom: 8px;
+}
+.back{
+    width: 50px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 0.75rem;
+    padding-top: 15px;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    right: 5%;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+.back:hover{
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+

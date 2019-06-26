@@ -1,0 +1,98 @@
+.carousel-control-prev,.carousel-control-next{
+    width: 66px;
+    height: 10%;
+    background: #fff;
+    border-radius: 50%;
+    color: #000;
+    top: 45%;
+    display: none;
+}
+.carousel-control-prev:hover,.carousel-control-next:hover{
+    color: #000;
+}
+.carousel-indicators li{
+    cursor: pointer;
+}
+.productinfo{
+    margin: 0 60px;
+}
+.productinfo h5{
+    line-height: .75rem;
+    font-size: .75rem;
+}
+.productinfo h3{
+    margin: .5rem 0 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    font-weight: 700;
+}
+.productinfo h4{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin-bottom: .25rem;
+}
+.infobutton{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    margin-top: 35px;
+    margin-bottom: 38px;
+}
+.infobutton div{
+    width: 100%;
+
+}
+.infobutton div button{
+    position: relative;
+    outline: 0 !important;
+    padding: 5px 0;
+    font-size: .75rem;
+    cursor: pointer !important;
+    top: 0;
+    transition:all .5s ;
+}
+.infobutton div button:hover{
+    top: -5px;
+}
+.infobutton div:last-child{
+    border-left: 1px solid #000;
+}
+#info{
+    margin: 0 50px;
+}
+#info p{
+    margin: 0 0 6px;
+    color: #717171;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+#info p:not(:first-child){
+    font-size: .75rem;
+}
+.size{
+
+}
+.size button{
+    padding: 16px 12px;
+    cursor: pointer;
+    outline: 0;
+    border-width: 1px;
+}
+.sizelist{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    padding: 25px;
+    border-bottom: 1px solid #000;
+}
+.sizelist li{
+    width: 20%;
+    padding: 7px 10px;
+    margin: 4px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+.sizelist li:hover{
+    border-style: dashed;
+}
