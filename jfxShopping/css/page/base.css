@@ -88,20 +88,22 @@ body{
 }
 .search
 /*导航栏内容*/
-.dropdown:hover .nav_view{
-    display: block;
-}
 .cancelrelative{
     position:static !important;
     box-sizing: border-box;
 
 }
-.dropdown{
-    position: static;
+.nav_cont{
+    display: none;
+    z-index: 999;
+}
+.nav_item:hover .nav_cont{
+    display: block;
 }
 .subnav{
     position: absolute !important;
     background: #fff;
+    top: 75px;
     left: 0;
     width: 100vw;
 }
