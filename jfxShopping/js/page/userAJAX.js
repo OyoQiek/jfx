@@ -114,6 +114,9 @@ function checklogin(){
     if(uid == "" || uid==null || uid == "null" || email == "" || email==null || email == "null"){
         $('.accountck').css({"display":"none"});
         $('.loginck').css({"display":"block"});
+        $('.sm_login_account').css({"display":"none"});
+        $('.sm_login_exit').css({"display":"none"});
+        $('.sm_login').css({"display":"block"});
         return false;
     }
     var xhr=new XMLHttpRequest();
@@ -126,6 +129,11 @@ function checklogin(){
             if(uid == result.uid && email == result.email){
                 $('.accountck').css({"display":"block"});
                 $('.loginck').css({"display":"none"});
+                $('.sm_login_account').css({"display":"block"});
+                $('.sm_login_exit').css({"display":"block"});
+                $('.sm_login').css({"display":"none"});
+                $('.sm_login_account').html("<a href='userinfo_dd.html?uid="+uid+"&email="+email+"' class='nav-link'>我的账户</a>");
+                $('.sm_login_exit').html("<a href='index.html' class='nav-link'>注销</a>");
                 var html=$('.accountck');
                 html.html("<a href='#' class='mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small' style='cursor: pointer'"+
                 "onmouseover='showaccount()'>我的账户：<span><b>"+result.uname+"</b></span></a>"+
