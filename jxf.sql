@@ -24,6 +24,7 @@ create table collect(
     cid int primary key not null auto_increment,
     uid int,
     pid int,
+    p_color varchar(10),
     p_size varchar(10),
     wid int
 );
@@ -32,17 +33,21 @@ create table product(
     pid int primary key not null auto_increment,
     b_order varchar(10),
     s_order varchar(10),
+    p_sex char(4),
     p_title varchar(32),
     p_info varchar(100),
     p_num varchar(32),
     p_cz varchar(32),
     p_price varchar(32),
-    picadd varchar(100)
+    p_color varchar(10),
+    picadd varchar(1000),
+    up_date varchar(32)
 );
 
 create table warehouse(
     wid int primary key not null auto_increment,
     pid int,
+    p_color varchar(10),
     p_size varchar(10),
     p_num  varchar(20)
 );

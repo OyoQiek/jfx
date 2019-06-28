@@ -151,3 +151,17 @@ function checklogin(){
         }
     }
 }
+
+
+//所有最新商品查询
+function newAllProduct(){
+    var xhr=new XMLHttpRequest();
+    xhr.open('get','/product/newallproduct',true);
+    xhr.send();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            
+        }
+    }
+}
+

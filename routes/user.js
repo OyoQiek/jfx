@@ -46,4 +46,5 @@ router.get('/queryuser/:uid', function (req,res) {
         }
     });
 });
+
 module.exports=router;
