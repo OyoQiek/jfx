@@ -84,7 +84,7 @@
                     <ul class="navbar-nav text-center">
                         <li class="px-lg-5 py-4 py-md-3 px-md-3 nav-item subnavborderb d-none d-md-block nav_item">
                             <div class="cancelrelative ">
-                                <a href="list.html?b_order=0" class="nav-link text-dark ">系列</a>
+                                <a href="#" class="nav-link text-dark" onclick="toList(0,0,'none',1)">系列</a>
                                 <!-- 系列-->
                                 <div class=" subnav my-0 nav_cont" id="newproduct">
                                     <div class="container nav_view">
@@ -93,7 +93,7 @@
                                             <li class="col-md-3">
                                                 <ul class="nav_list">
                                                     <li>最新系列</li>
-                                                    <li><a href="list.html?b_order=0">最新系列</a></li>
+                                                    <li><a href="#" onclick="toList(0,0,'none',1)">最新系列</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -103,7 +103,7 @@
                         </li>
                         <li class="py-4 py-md-3 px-lg-5 px-md-3 nav-item subnavborderb d-none d-md-block nav_item">
                             <div class="cancelrelative">
-                                <a href="list.html?b_order=cy&s_order=0"  class="nav-link text-dark ">成衣</a>
+                                <a href="#"  onclick="toList('cy',0,'none',0)" class="nav-link text-dark ">成衣</a>
                                 <!-- 成衣 -->
                                 <div class=" subnav my-0 nav_cont" id="cy">
                                     <div class="container nav_view">
@@ -112,37 +112,37 @@
                                             <li class="col-md-3">
                                                 <ul class="nav_list">
                                                     <li>最新系列</li>
-                                                    <li><a href="list.html?b_order=cy&s_order=new">最新系列</a></li>
+                                                    <li><a href="#" onclick="toList('cy',0,0,1)">最新系列</a></li>
                                                 </ul>
                                             </li>
                                             <li class="col-md-3">
                                                 <ul class="nav_list">
                                                     <li>女士</li>
-                                                    <li><a href="list.html?b_order=cy&s_order=wlf&p_sex=0">晚礼服</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=syycs&p_sex=0">上衣与衬衫</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=rcqz&p_sex=0">日常裙装</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=kz&p_sex=0">裤子</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=qz&p_sex=0">裙子</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=jks&p_sex=0">夹克衫</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=ks&p_sex=0">开衫</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=ttzzs&p_sex=0">套头针织衫</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=ts&p_sex=0">T恤</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=bqwt&p_sex=0">棒球外套</a></li>
-                                                    <li><a href="list.html?b_order=cy&s_order=dyywt&p_sex=0">大衣与外套</a></li>
+                                                    <li><a href="#" onclick="toList('cy','wlf',0,0)">晚礼服</a></li>
+                                                    <li><a href="#" onclick="toList('cy','shirt',0,0)">上衣与衬衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','rcqz',0,0)">日常裙装</a></li>
+                                                    <li><a href="#" onclick="toList('cy','kz',0,0)">裤子</a></li>
+                                                    <li><a href="#" onclick="toList('cy','qz',0,0)">裙子</a></li>
+                                                    <li><a href="#" onclick="toList('cy','jks',0,0)">夹克衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','ks',0,0)">开衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','ttzzs',0,0)">套头针织衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','ts',0,0)">T恤</a></li>
+                                                    <li><a href="#" onclick="toList('cy','bqwt',0,0)">棒球外套</a></li>
+                                                    <li><a href="#" onclick="toList('cy','dyywt',0,0)">大衣与外套</a></li>
                                                 </ul>
                                             </li>
                                             <li class="col-md-3">
                                                 <ul class="nav_list">
                                                     <li>男士</li>
-                                                    <li><a href="#">棒球外套</a></li>
-                                                    <li><a href="#">开衫</a></li>
-                                                    <li><a href="#">外衣与外套</a></li>
-                                                    <li><a href="#">套头针织衫</a></li>
-                                                    <li><a href="#">上衣与衬衫</a></li>
-                                                    <li><a href="#">衬衣</a></li>
-                                                    <li><a href="#">西服外套</a></li>
-                                                    <li><a href="#">裤子和短裤</a></li>
-                                                    <li><a href="#">夹克衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','bqwt',1,0)">棒球外套</a></li>
+                                                    <li><a href="#" onclick="toList('cy','ks',1,0)">开衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','wyywt',1,0)">外衣与外套</a></li>
+                                                    <li><a href="#" onclick="toList('cy','ttzzs',1,0)">套头针织衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','shirt',1,0)">上衣与衬衫</a></li>
+                                                    <li><a href="#" onclick="toList('cy','shirtt',1,0)">衬衣</a></li>
+                                                    <li><a href="#" onclick="toList('cy','xfwt',1,0)">西服外套</a></li>
+                                                    <li><a href="#" onclick="toList('cy','kzhdk',1,0)">裤子和短裤</a></li>
+                                                    <li><a href="#" onclick="toList('cy','jks',1,0)">夹克衫</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

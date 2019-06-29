@@ -151,17 +151,138 @@ function checklogin(){
         }
     }
 }
+// 导航跳转
+function toList(b_order,s_order,p_sex,news){
+    var url=new URLSearchParams(location.search);
+    var uid=url.get("uid");
+    var email=url.get("email");
+    window.location.href="list.html?uid="+uid+"&email="+email+"&b_order="+b_order+"&s_order="+s_order+"&p_sex="+p_sex+"&new="+news;
+}
 
 
-//所有最新商品查询
-function newAllProduct(){
+//商品查询  在列表页加载
+function findProduct(){
+    checklogin();
+    var urlPar=new URLSearchParams(location.search);
+    var uid=urlPar.get("uid");
+    var email=urlPar.get("email");
+    var b_order=urlPar.get("b_order");
+    var s_order=urlPar.get("s_order");
+    var p_sex=urlPar.get("p_sex");
+    var news=urlPar.get("new");
     var xhr=new XMLHttpRequest();
-    xhr.open('get','/product/newallproduct',true);
+    var title="";
+    xhr.open('get','/product/findproduct/'+b_order+"-"+s_order+"-"+p_sex+"-"+news,true);
     xhr.send();
     xhr.onreadystatechange=function(){
         if(xhr.readyState==4 && xhr.status==200){
-            
+            var result=xhr.responseText;
+            result=JSON.parse(result);
+            // 获取标题
+            switch(result[0].b_order){
+                case "cy":
+                    title="成衣";
+                    break;
+                case "bd":
+                    title="包袋";
+                    break;
+                case "xl":
+                    title="鞋履";
+                    break;
+                case "ps":
+                    title="配饰";
+                    break;
+            }
+            // 查询所有最新系列
+            if(b_order=="0"){
+                $('.toptitle').html("<b>最新系列</b>");         
+            // 查询大类最新系列 
+            }else if(b_order!="0" && news=="1"){
+                $('.toptitle').html("<span class='h6'>"+title+"</span><br/><b>最新系列</b>");    
+            //查询女性大类商品 
+            }else if(b_order!="0" && s_order=="0" && p_sex=="0"){
+                $('.toptitle').html("<span class='h6'>女士</span><br/><b>"+title+"</b>");
+            //查询男性大类商品 
+            }else if(b_order!="0" && s_order=="0" && p_sex=="1"){
+                $('.toptitle').html("<span class='h6'>男士</span><br/><b>"+title+"</b>");
+            //查询女性小类商品
+            }else if(b_order!="0" && s_order!="0" && p_sex=="0"){
+                $('.toptitle').html("<span class='h6'>女士</span><br/><b>"+title+"</b>");
+            //查询男性小类商品
+            }else if(b_order!="0" && s_order!="0" && p_sex=="1"){
+                $('.toptitle').html("<span class='h6'>男士</span><br/><b>"+title+"</b>");
+            }
+            if(result!=0){              
+                // 按地址栏的数据将查询后的结果遍历到页面中
+                var html="";
+                for(var i=0;i<result.length;i++){
+                    var arr=result[i].picadd.split(",");
+                    html+="<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover="+"productchange('.producthide','.productshow')"+">"+
+                    "<a href='productinfo.html?uid='"+uid+"&email="+email+"&pid="+result[i].pid+"' class='d-block w-100'><img src='"+arr[0]+"' class='producthide w-100'"+
+                    "alt=''></a>"+
+                    "<div class='productshow' style='display: none'>"+
+                    "<a href='productinfo.html?uid="+uid+"&email="+email+"&pid="+result[i].pid+"'>"+
+                    "    <img src='"+arr[1]+"' class='w-100' alt=''>"+
+                    "</a>"+
+                    "    <div class='text-center m-auto'>"+
+                    "        <p>"+result[i].p_title+"</p>"+
+                    "        <p>"+result[i].p_price+"</p>"+
+                    "    </div>"+
+                    "</div>"+
+                    "</div>"
+                }
+                $('.list_cont').html(html);
+                $('.list_number b').html(result.length+"条");     
+            }
         }
     }
 }
 
+//获取单件商品的详情
+function getProductInfo(){
+    checklogin();
+    var urlPar=new URLSearchParams(location.search);
+    var uid=urlPar.get("uid");
+    var email=urlPar.get("email");
+    var pid=urlPar.get("pid");
+    var xhr=new XMLHttpRequest();
+    xhr.open('get','/product/getinfo/'+uid+"-"+email+"-"+pid,true);
+    xhr.send();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            var result=xhr.responseText;
+            result=JSON.parse(result)[0];
+            var pic=result.picadd.split(",");
+            // 商品图片
+            var html="";
+            html+="<div class='carousel-item active'>"+
+            "<img src='"+pic[0]+"' class='w-100' alt=''></div>"+
+            "<div class='carousel-item'><img src='"+pic[1]+"' class='w-100' alt=''></div>"+
+            "<div class='carousel-item'><img src='"+pic[2]+"' class='w-100' alt=''></div>"+
+            "<div class='carousel-item'><img src='"+pic[3]+"' class='w-100' alt=''></div>"+
+            "<div class='carousel-item'><img src='"+pic[4]+"' class='w-100' alt=''></div>";
+            $('.banner').html(html);
+            //商品信息
+            $('.productinfo h3').text(result.p_title);
+            $('.productinfo h4').text(result.p_price);
+            $('#info').html("<p>中式领上衣，泡泡长袖，尚蒂伊蕾丝装饰，花卉和豹纹印花。撞色胸袋、袖口和纽扣扣袢，黑色双绉肩部镶饰。</p>"+
+            "<p>产品编号：<span>"+result.p_num+"</span></p>"+
+            "<p>材质：<span>"+result.p_cz+"</span></p>"+
+            "<input type='hidden' class='color' value='"+result.p_color+"'/>");
+        }
+    }
+}
+
+//商品详情中选择尺寸
+function chooseSize(){
+    var list=$('.sizelist li');
+    list.on("click",function(){
+        var index=list.index(this);
+        $('.size button').html(list.eq(index).text()+"<span class='dropdown-toggle float-right'></span>");
+    });
+}
+
+//加入心愿单
+function addWish(){
+    
+}
