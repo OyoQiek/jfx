@@ -26,6 +26,15 @@
     color: #fff;
     font-size: 2rem;
 }
+.findp{
+    overflow: hidden;
+}
+.findp img{
+    transition: all 7s !important;
+}
+.findp img:hover{
+    transform: scale(1.5) !important;
+}
 .b_ordert{
     font-size: 0.8rem;
     font-weight: 700;

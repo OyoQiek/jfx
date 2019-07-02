@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/page/base.css" />
-    <link rel="stylesheet" href="css/page/index.css"/>
+    <link rel="stylesheet" href="css/page/privacy-policy.css" />
     <script src="js/page/base.js"></script>
     <script src="js/page/userAJAX.js"></script>
 </head>
-<body id="body_bg" onload="checklogin()">
+
+<body onload="checklogin()">
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
             <!-- 右上角的登陆和搜索按钮 -->
             <div class="row bg-white topleft">
                 <div class="col-md-5 col-5 px-0">
-                    <a href="#search" data-toggle="modal" class="d-md-none d-inline-block mt-3"><img src="images/search.png" alt=""></a>
+                    <a href="#search" data-toggle="modal" class="d-md-none d-inline-block mt-3"><img
+                            src="images/search.png" alt=""></a>
                 </div>
                 <!-- LOGO -->
                 <div class="col-md-2 col-2 pt-4 pb-3 p-md-4">
@@ -30,18 +32,23 @@
                 <div class="col-md-5 col-3 mt-3 ">
                     <ul class="d-flex justify-content-md-end">
                         <li class="loginck">
-                            <a href="login.html" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer" onmouseover="showlogin()">登陆</a>
+                            <a href="login.html" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small"
+                                style="cursor: pointer" onmouseover="showlogin()">登陆</a>
                             <span class="checksh"></span>
-                            <div id="login" class="collapse login bg-white" >
+                            <div id="login" class="collapse login bg-white">
                                 <div>
                                     <span class="email_msg">请输入您的电子邮箱地址</span>
                                     <label class="emailnotice" for="email" id="emailck">电子邮箱地址*</label>
-                                    <div><input type="text" class="input" id="email"  onfocus="ckfocus('#emailck','20px')" onblur="ckblurs('#emailck','40px','#email')"></div>
+                                    <div><input type="text" class="input" id="email"
+                                            onfocus="ckfocus('#emailck','20px')"
+                                            onblur="ckblurs('#emailck','40px','#email')"></div>
                                 </div>
                                 <div>
                                     <span class="upwd_msg">请输入您的密码</span>
                                     <label class="upwdnotice" for="upwd" id="upwdck">密码*</label>
-                                    <div><input type="password" class="input" id="upwd"  onfocus="ckfocus('#upwdck','20px')" onblur="ckblurs('#upwdck','40px','#upwd')"></div>
+                                    <div><input type="password" class="input" id="upwd"
+                                            onfocus="ckfocus('#upwdck','20px')"
+                                            onblur="ckblurs('#upwdck','40px','#upwd')"></div>
                                 </div>
                                 <div>
                                     <button class="btn btn-block bg-dark mt-4 text-white">登陆</button>
@@ -56,20 +63,21 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="accountck d-none d-md-block">
+                        <li class="accountck">
                             <!--<a href="#" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer" onmouseover="showaccount()">我的账户：<span><b>x</b></span></a>
-                            <span class="afterchecksh"></span>
-                            <div id="account" class=" login account bg-white">
-                                <ul class="">
-                                    <li class=""><a href="#">订单</a></li>
-                                    <li class=""><a href="#">心愿单</a></li>
-                                    <li class=""><a href="#">个人信息</a></li>
-                                    <li class=""><a href="#">地址</a></li>
-                                    <li class=""><a href="#">注销</a></li>
-                                </ul>
-                            </div>-->
+                    <span class="afterchecksh"></span>
+                    <div id="account" class=" login account bg-white">
+                        <ul class="">
+                            <li class=""><a href="#">订单</a></li>
+                            <li class=""><a href="#">心愿单</a></li>
+                            <li class=""><a href="#">个人信息</a></li>
+                            <li class=""><a href="#">地址</a></li>
+                            <li class=""><a href="#">注销</a></li>
+                        </ul>
+                    </div>-->
                         </li>
-                        <li class="mt-md-1 d-md-block d-none"><a href="#search" data-toggle="modal"><img src="images/search.png" alt=""></a></li>
+                        <li class="mt-md-1 d-md-block d-none"><a href="#search" data-toggle="modal"><img
+                                    src="images/search.png" alt=""></a></li>
                     </ul>
                 </div>
             </div>
@@ -103,7 +111,7 @@
                         </li>
                         <li class="py-4 py-md-3 px-lg-5 px-md-3 nav-item subnavborderb d-none d-md-block nav_item">
                             <div class="cancelrelative">
-                                <a href="#"  onclick="toList('cy',0,'none',0)" class="nav-link text-dark ">成衣</a>
+                                <a href="#" onclick="toList('cy',0,'none',0)" class="nav-link text-dark ">成衣</a>
                                 <!-- 成衣 -->
                                 <div class=" subnav my-0 nav_cont" id="cy">
                                     <div class="container nav_view">
@@ -277,7 +285,7 @@
                                     <a href="#nd1" data-toggle="collapse" class="nav-link">系列</a>
                                     <div id="nd1" data-parent="#parent" class="collapse">
                                         <div class=" d-flex flex-column">
-                                            <a href="#nd1_man"  data-toggle="collapse" class="smsubnavt">男士</a>
+                                            <a href="#nd1_man" data-toggle="collapse" class="smsubnavt">男士</a>
                                             <div id="nd1_man" data-parent="#parent1" class="collapse">
                                                 <ul>
                                                     <li class="smsubnavb"><a href="#" class="smsubnava">最新系列</a></li>
@@ -298,7 +306,7 @@
                                     <a href="#cy1" data-toggle="collapse" class="nav-link">成衣</a>
                                     <div id="cy1" data-parent="#parent" class="collapse">
                                         <div class=" d-flex flex-column">
-                                            <a href="#cy1_man"  data-toggle="collapse" class="smsubnavt">男士</a>
+                                            <a href="#cy1_man" data-toggle="collapse" class="smsubnavt">男士</a>
                                             <div id="cy1_man" data-parent="#parent2" class="collapse">
                                                 <ul>
                                                     <li class="smsubnavb"><a href="#" class="smsubnava">棒球外套</a></li>
@@ -336,7 +344,7 @@
                                     <a href="#bd1" data-toggle="collapse" class="nav-link">包袋</a>
                                     <div id="bd1" data-parent="#parent" class="collapse">
                                         <div class=" d-flex flex-column">
-                                            <a href="#bd1_man"  data-toggle="collapse" class="smsubnavt">男士</a>
+                                            <a href="#bd1_man" data-toggle="collapse" class="smsubnavt">男士</a>
                                             <div id="bd1_man" data-parent="#parent3" class="collapse">
                                                 <ul>
                                                     <li class="smsubnavb"><a href="#" class="smsubnava">斜挎包</a></li>
@@ -364,7 +372,7 @@
                                     <a href="#xl1" data-toggle="collapse" class="nav-link">鞋履</a>
                                     <div id="xl1" data-parent="#parent" class="collapse">
                                         <div class=" d-flex flex-column">
-                                            <a href="#xl1_man"  data-toggle="collapse" class="smsubnavt">男士</a>
+                                            <a href="#xl1_man" data-toggle="collapse" class="smsubnavt">男士</a>
                                             <div id="xl1_man" data-parent="#parent4" class="collapse">
                                                 <ul>
                                                     <li class="smsubnavb"><a href="#" class="smsubnava">靴子与德比鞋</a></li>
@@ -390,7 +398,7 @@
                                     <a href="#ps1" data-toggle="collapse" class="nav-link">配饰</a>
                                     <div id="ps1" data-parent="#parent" class="collapse">
                                         <div class=" d-flex flex-column">
-                                            <a href="#ps1_man"  data-toggle="collapse" class="smsubnavt">男士</a>
+                                            <a href="#ps1_man" data-toggle="collapse" class="smsubnavt">男士</a>
                                             <div id="ps1_man" data-parent="#parent5" class="collapse">
                                                 <ul>
                                                     <li class="smsubnavb"><a href="#" class="smsubnava">手拿包</a></li>
@@ -440,7 +448,7 @@
             <div class="modal-content">
                 <div class="search_position">
                     <div class="container">
-                        <input type="text" class="w-75" id="searchcont" placeholder="搜索"/>
+                        <input type="text" class="w-75" id="searchcont" placeholder="搜索" />
                         <button class="btn btn-dark search_btn">开始搜索</button>
                         <span class="close" data-dismiss="modal">&times;</span>
                     </div>
@@ -451,67 +459,159 @@
     </div>
     <!-- 头部end -->
 
+
+
     <!--main主体内容-->
     <div class="container-fluid px-0" id="main">
-        <!-- banner轮播图-->
-        <div class="carousel" id="banner" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active"><img src="images/banner1.jpg" class="w-100" alt=""/></div>
-                <div class="carousel-item"><img src="images/banner2.jpg" class="w-100" alt=""/></div>
-                <div class="carousel-item"><img src="images/banner3.jpg" class="w-100" alt=""/></div>
-                <div class="carousel-item"><img src="images/banner4.jpg" class="w-100" alt=""/></div>
-            </div>
-            <ul class="carousel-indicators">
-               <li data-target="#banner" class="active" data-slide-to="0"></li>
-               <li data-target="#banner" data-slide-to="1"></li>
-               <li data-target="#banner" data-slide-to="2"></li>
-               <li data-target="#banner" data-slide-to="3"></li>
-            </ul>
+        <div class="container">
+            <p>
+                <span
+                    class="font_cont">本基本规则中详细描述了GIVENCHY集团在其网站www.givenchy.com（下文称为“网站”）上或其他GIVENCHY运营网站（统称为“全部网站”）上客户隐私保护方面实施的策略。
+                    GIVENCHY集团非常关注您访问我方网站时私人资料和信息的保密性。通过基本规则，您可以更多地了解我们在网站上获取您个人信息的属性和用途、浏览网页信息的来源和用途及您可享有的权利。
+                    因此本基本规则十分重要，对于您来说，可获取指导经验并增强对我们服务的信心，而对于我方来说，则在于精确完整地回答您的信息，并了解您的需求。
+                    本基本规则是 “网站使用一般条款”的补充，适用于在您访问我公司网站过程中被搜集和处理的所有个人信息和浏览数据。应用我方网站时，您应声明接受本规则中的规定。
+                    GIVENCHY集团可随时更新或修改本规则，且更改将立即生效。因此，我们建议您经常查看本文档。我们网站上始终显示最新版本的隐私保护政策。
+                    如欲获得更多信息，您可根据网站上“联系我们”栏内标注的工作时间，通过电话00 800 0000 1952与客户中心联系（依照所呼叫地理区域固定电话通话价格）。</span>
+            </p>
+            <p>
+                <h2 class="font_title">1.一般信息</h2>
+            </p>
+            <p><span class="font_cont">通过我们的网站，GIVENCHY可搜集个人资料，尤其在注册网站账户、订阅“时事通讯”或“滚屏提示”时。
+                    所有为获得某些服务的使用权而提供的个人信息均应遵循隐私保护条款（1978年1月6日制订并于2004年8月6日修订的第78-17号《信息与自由法》，2018年5月25日起，将遵循2016年4月27日制订的《欧洲隐私保护规则》及所有补充条款）。</span>
+            </p>
+            <p>
+                <h2 class="font_title">2.您的权利</h2>
+            </p>
+            <p><span class="font_cont">您对于您的个人信息拥有访问、修改、限制、删除和转移的权利，一旦非法处理信息、未经允许将您的信息用于商业用途或去世后您的信息被滥用，您可随时行使下列权利：<br>
+                    • 针对时事通讯和滚屏提示： 在您账户的“个人资料”栏内，或者通过您所接收到的每封电子通知中的退订链接。
+                    <br>
+                    • 任何情况下，均可通过电子邮箱contact@givenchy.com或邮政信箱联系GIVENCHY客户服务中心：
+                    <br><br>
+                    GIVENCHY“集团个人隐私保护”
+                    <br>
+                    客户服务中心
+                    <br>
+                    159, avenue Charles de Gaulle, 92521 Neuilly-Sur-Seine cedex, France
+                    <br><br>
+                    申请人通过邮件（或电子邮箱）发送请求，并附身份证复印件及行使权利人签名。 此外，您还可依靠主管监督机关行使申诉权。</span></p>
+            <p>
+                <h2 class="font_title">3.本公司的个人信息管理</h2>
+            </p>
+            <p><span class="font_cont">
+                    3.1 信息搜集方式
+                    <br>
+                    注册网站时，我们将通过附页“创立一个账户”中的表格搜集您的实名资料。需要标明您的称呼、姓名、电子邮箱地址、邮政地址（必要时还需要移动电话识别符UDID）。另外，我们还需要您填写可选信息，例如您在产品/服务方面的偏好。
+                    <br>
+                    一般来说，除非另有规定，否则必填项必须填写，以便于满足您的需求。搜集信息时应口头明确必填项。如未填写必填项，我们则无法回复您的请求。
+                    当您决定利用GIVENCHY网站提供的现有工具联系客户中心时，例如自动回呼或即时信息功能与我们的顾问联系，我们将利用您在网站上已经输入的信息，尤其是创建账户时提供的信息（详见上文），为您提供个性化服务并有效地满足您的需求。如您不希望进行上述操作，可在使用这些工具前点击“退出登录”按钮。
+                    <br>
+                    因此，当您查看网页时，GIVENCHY集团的服务器将自动识别您电脑对应的IP地址（每台电脑链接到互联网的识别码。IP地址的格式如下：XXX.XXX.XXX.XXX）或您手机的识别符UDID（连接互联网手机型号的代码。UDID由四十个字符组成）。
+                </span>
+            </p>
+            <p><span class="font_cont">3.2 目的性
+                    <br>
+                    为达成下列必要目的，GIVENCHY集团通过网络处理您的个人信息：
+                    <br>
+                    - 管理客户关系和潜在客户
+                    <br>
+                    - 管理“时事通讯”订购信息（订购和退订）<br>
+                    - 管理“滚屏提示”订购信息（订购和退订）<br>
+                    - 对于网站流量进行匿名统计<br>
+                    - 允许访问我们网站的某些功能<br>
+                    - 经您事先许可，可向您传递我公司经营活动、产品和/或服务方面信息及商业勘探信息。<br>
+                    - 整理信息<br>
+                    - 管理产品、服务或内容方面的访客意见<br>
+                    - 经您同意，进行调查和民意测验<br>
+                    鉴于您已同意了上述某些目的，便于GIVENCHY集团执行协议或更好地为您服务，为达到其目的和满足您的需求所搜集的信息（尤其是您的姓名、邮政地址、电子邮箱和电话号码）为必填项，或在信息搜集表格上标注星号，并进行处理。如未填写必填项，我们则无法回复您的请求。<br>
+                    经您批准，我们还将收集位置数据，以便当您登录我们的移动应用程序时，可对离您最近的销售点进行定位。 </span>
+            </p>
+            <p><span class="font_cont">3.3 信息保存<br>
+                    信息保存的期限不得超过搜集信息达成目的所需期限。<br>
+                    -针对“时事通讯”及“滚屏提示”订购管理方面：只要订购仍有效，我们就将始终保存您的信息。一旦收到您的退订申请，我们将停止发送时事通讯和滚屏提示，并删除您的资料。<br>
+                    -潜在客户管理方面：与潜在客户签订最后一份协议起3年期限。<br>
+                    -针对地理位置信息：2个月。</span></p>
+            <p><span class="font_cont">3.4 信息接收人 <br>
+                    所填写的个人信息将发送给GIVENCHY集团<br>
+                    。 为满足上文提出的目，并参与GIVENCHY集团的市场营销活动管理，通过网站搜集的个人信息将发送给合作公司。<br>
+                    根据您的要求，您的个人信息应供GIVENCHY集团所用。<br>
+                    请注意，您向网站提供的资料可传送给欧洲经济区以外的国家。同时，GIVENCHY集团将您向网站提供的资料传送给GIVENCHY子公司，某些子公司设立在欧洲经济区以外的国家。以及互联网平台维护运营的第三方公司。<br>
+                    信息传送建立在欧盟委员会批准的条文基础上，并依据信息传送协议要求，确保所有传送的个人信息均受一定程度的保护，并符合个人信息保护规则，同时出台适宜的技术和组织安全措施，防止意外或非法破坏个人信息、意外丢失、篡改、披露、未经批准私自访问或防止任何形式的非法处置。<br>
+                    在任何情况下，只有当具备下列条件时，GIVENCHY集团才可将您的个人资料传送给第三方： <br>
+                    •您已事先发布信息分享许可。<br>
+                    •GIVENCHY集团必须向第三方分享这些信息，才可为您提供所需服务。 或者<br>
+                    •司法机构或其他行政机构要求GIVENCHY集团向其传送信息。 </span></p>
+            <p><span class="font_cont">3.5 信息的安全性和保密性<br>
+                    GIVENCHY公司试图出台所有预防措施，保证所处理个人资料的保密性和安全性，避免资料被篡改、损坏、损毁或未经允许被第三方访问。推出隶属于信息体系，且符合技术标准的技术和机构安全措施。然而，GIVENCHY集团不可避免所有互联网运营方面风险，因此，需增强访客使用和运行方面的风险意识。<br>
+                    创立账户方面，必须输入一个私人密码，并遵循隐私保护政策。该密码应由8位字符组成，可包括3类不同字符：小写字母、大写字母和数字。<br>
+                    我们对于信息体系的安全防护性给予了极大重视。利用工具，可检测所有安全漏洞。通过这些工具，我们的安全团队可随机访问个人信息。这些搜集和处置信息专门用于漏洞管理，符合个人信息保护规则要求。</span>
+                    <p><h2 class="font_title">4.COOKIES和登录证明</h2></p>
+                    <p><span class="font_cont">4.1 什么是“Cookies”?<br>
+                            “Cookie”或跟踪程式指您的终端设备（例如: 电脑、笔记本、智能电话等）上的硬盘专用区中利用浏览器查看我们的网站和您所选择的主题可能存储的文件夹文本，。发送人可在Cookie确认或储存期间通过Cookie文件夹识别存储终端。<br>
+                            浏览我公司网站时，通过网站终端设备浏览器搜索到的信息可能存储在终端设备上安装的“Cookies”文件夹内。<br>
+                            第一次访问我公司网站时，GIVENCHY会在您的终端设备上安插一个Cookies，建议您通过页面上方的信息栏调用这些cookies。显示该信息栏时，您可继续浏览我们的网页，同意我们使用这些cookies。<br>
+                            您可随时修改与cookies相关的参数 (请参看4.4.1您对于Cookie方面的选择)。下文中详细描述了cookies方面信息及cookies参数的管理方法。 </span></p>
+                    <p><span class="font_cont">4.2 我们在网站上发送的Cookies<br>
+                            当您登陆我们的网站时，我们可根据您的选择，在您的终端设备上安装几个cookies,以便在相关cookie确认期间识别您的终端浏览器。<br>
+                            通过我们所发送的Cookies,可进行下列操作：<br>
+                            - 建立我们网站的统计数据、浏览量并利用网站的各个组成部分（访问的信息栏、内容和路径），我们可优化互联网并提高服务工效。 <br>
+                            -允许或方便您浏览网页，或通信时向您提供在线通讯服务，因此： <br>
+                            - 使我们的网站与您终端设备的显示偏好相适应（使用语言、显示分辨率、所用操作系统等），当您访问我方网站时，根据硬件和可视化软件，读取终端设备上的内容； <br>
+                            - 存储您在我方网站表格上填写的信息（注册或访问您的账户）或您在我方网站上选择的产品、服务或信息（订阅服务、收藏夹内容等）；<br>
+                            - 通过您之前向我们指定的用户名或资料，允许您访问我方网站的专用和私人区域，例如您的账户； <br>
+                            - 出台安全措施，例如一段时间后，要求您重新连接某些内容或服务。 </span></p>
+                    <p><span class="font_cont">4.3 由第三方在我方网站上发送的Cookies <br>  
+                            第三方发送和使用cookies应遵循第三方隐私保护政策。我们将向您通告cookies对象及有助于选择cookies的途径。</span></p>
+                    <p><span class="font_cont">4.3.1 我公司网站中集成的第三方应用软件所发送Cookies<br>  
+                            我公司网站中还并入了第三方发行的计算机应用软件，便于您与其他人分享我方网站信息，并将您对于网站内容的结论或意见传递给其他人士。尤其当社交网络中出现“分享”“我喜欢”等按钮的情况下（例如“Facebook(脸书）”、“Twitter（推特）”、“Pinterest”、“Weibo（微博）”、“WeChat（微信）”等）。<br>  
+                            社交网络上设置这样的应用按钮，可通过该按钮对您进行识别，即使您在访问我公司网站时并未使用该按钮。实际上，通过此类应用按钮，只需在浏览网站时将您终端设备上的公司网络账户激活（登陆账号），相关公司网络即可跟踪您在我方网站上的浏览路径。<br>  
+                            我们对于社交网络的网站浏览信息及个人资料相关信息的搜集应用程序未加以监控。我们邀请您了解社交网络方面的隐私保护政策，以便掌握使用目的，尤其是广告和通过应用按钮收集浏览信息。<br>  
+                            在这些保护政策基础上，您可在社交网络中行使选择权，尤其是为每个网络确定账户参数时。 </span></p>
+                    <p><span class="font_cont">4.3.2 第三方在www.givenchy.com上发送的目标广告Cookies <br>
+                            www.givenchy.com网站上可能包含第三方发放的某些cookies（传播机构、收视率测试机构、目标广告提供商等），并在cookies确认期间，允许后者进行下列操作：</span></p>
+                    <p><span class="font_cont">-收集终端设备浏览我方网站的信息。<br>
+                            - 确定www.givenchy.com网站上专门展示的产品优惠广告信息和/或服务信息，并与终端设备之前浏览的关注点相一致。</span></p>
+                    <p><span class="font_cont">4.4 为您浏览网页所量身定做广告的益处是什么？我们的目标是为您呈现最贴切的广告。
+                        为达到此目的，根据最近浏览的网页或应用程序，借助cookies技术，可实时确定终端设备上显示的广告。当您浏览网页时，您对于广告内容的关注点将显示在终端设备上，透过其，我们可运用这些服务，尤其是向客户免费提供广告资源。诚然，您更希望展示感兴趣的广告内容。 </span></p>
+                    <p><span class="font_cont">4.4对cookies的选择<br>
+                            为您提供管理cookies的几种解决方案。所有参数设置均可能修改您的上网浏览内容及Cookies使用所必须的某些服务访问条件。 
+                            您可随时通过下文中描述的方式，设置和修改您的cookies收藏夹。 </span></p>
+                    <p><span class="font_cont">4.4.1 通过浏览器进行选择<br>
+                            您可对浏览器进行配置，相反，它们可被废弃、系统化或根据发布人将cookies保存在您的终端设备内。同时，您还可以配置浏览器，在cookie保存在您的终端设备内之前，接受或拒绝 定时提供的cookies。如欲获得更多资讯，请在信息栏“如何根据所采用的浏览器进行选择？”中查询。</span></p>
+                    <p><span class="font_cont">(a)	Cookies相关协议<br>
+                            在终端设备中保存cookie主要还需依照终端设备使用者的意愿，可通过浏览器选项随时免费设置和修改。 <br>
+                            如果您在终端浏览器中保存了cookies,页面中集成的cookies和您所查询的内容均将临时保存在终端专属区内。仅其发布人可读取。</span></p>
+                    <p><span class="font_cont">(b) 拒绝Cookies <br>
+                            如您拒绝在终端中保存cookies,或您删除了已保存的cookies,将不可再享受浏览网站某些区域所必须的功能。如您试图访问需要验证您身份的内容或服务，则属于该情况。鉴于技术兼容性原因，我们或我们的服务商无法识别您的终端所使用的浏览器类型、语言、显示参数设置或您的终端设备互联网连接所属国家，也属于该种情况。 必要时，对于GIVENCHY公司无法存储或查询必要cookies或者贵方拒绝或取消服务所导致的后果，我方不承担任何责任。</span></p>
+                    <p><span class="font_cont">(c) 如何根据所使用的浏览器进行选择？<br>
+                            在cookies管理和选择方面，每个浏览器的配置均有所区别。将在您的浏览器帮助菜单中详细描述，让您知道如何修改cookies收藏夹。<br>
+                            针对Internet Explorer浏览器™http://windows.microsoft.com/fr-FR/windows-vista/Block-or-allow-cookies,<br>
+                            针对Safari浏览器™ : http://docs.info.apple.com/article.html?path=Safari/3.0/fr/9277.html,<br>
+                            针对Chrome浏览器™ : Http://support.google.com/chrome/bin/answer.py?hl=fr&hlrm=en&answer=95647,,<br>
+                            针对火狐狸浏览器FirefoxTM : http://support.mozilla.org/fr/kb/Activer%20et%20d%C3%A9sactiver%20les%20cookies,<br>
+                            针对Opera浏览器™ : http://help.opera.com/Windows/10.20/fr/cookies.html,等等。 </span></p>
+                    <p><span class="font_cont">4.4.2 «Adobe Flash Player»™的«Flash»©插件cookies <br>
+                            "Adobe Flash Player"™是一个计算机应用程序，它使用“Flash”计算机语言，对动态内容进行快速更新。利用与cookies类似的技术，Flash插件（及同类型的应用软件）将保存参数、偏好并应用这些内容。然而，"Adobe Flash Player"™通过您的浏览器提供的不同界面管理信息并掌握您的选项。<br>
+                            当您的终端设备可显示Flash计算机语言更新内容的情况下，我们允许您直接通过网站http://www.adobe.com/fr/.使用Flash计算机语言cookies的管理工具。</span></p>
+                    <p><span class="font_cont">4.5 如需将终端设备与其他人共享 <br>
+                            如多人共同使用终端设备或同一个终端设备具有多个浏览器，我们无法保证为您的终端设备提供的服务和广告恰好与终端设备本身用途相吻合，或与其他终端用户的用途相一致。</span></p>
+                    <p><span class="font_cont">如有必要，您可自由选择共享使用终端设备的人员和cookies方面相关的浏览器参数配置，这是您的责任所在。<br>
+                            如欲了解更多关于cookies及其使用方面信息，访问者可通过下列地址查询国家资讯自由委员会的文件：http://www.cnil.fr.</span></p>
+                    <p><h2 class="font_title">5.社交网络共享功能</h2></p>
+                    <p><span class="font_cont">您可在givenchy.com的社交网络上分享某些信息或内容（数据表……）。本通告中附带GIVENCHY集团评语，评语可定制。点击“在Facebook （脸书）上共享”和“我喜欢”按钮，或社交网站上的共享按钮（Twitter（推特）的小鸟，Pinterest网站的字母“P”），GIVENCHY服务器输出的内容将发送（上传）给相关社交网站。然后，根据您所查看的社交网络使用条款进行监管。您应对我公司网站向社交网络输出的内容全权负责。当内容从我公司网站输出的情况下，GIVENCHY不承担任何使用、操作或动作相关责任。 </span></p>
+                    <p><h2 class="font_title">6.向朋友发送及搜集第三方信息的功能</h2></p>
+                    <p><span class="font_cont">•在我公司网站上，您可以将感兴趣的产品或服务信息乃至我们的产品或服务发送给您的朋友。<br>
+                            •为发送数据表：我们需要您提供朋友的电子邮箱地址，用于传输资料。我们搜集信息仅为确保您电子邮箱技术方面可靠传输。我们既不储存也不记录发件人和/或收件人的信息。<br>
+                            •在任何情况下，均需确保相关人士已知晓您向我方提供相关个人信息的事实。 </span></p>
+                            <p><h2 class="font_title">7.信息使用</h2></p>
+                    <p><span class="font_cont">GIVENCHY公司不可向无关联和非合作伙伴的第三方人士传输或出售信息，除非GIVENCHY公司事先向您发出许可、在网站上贴出通告、您明确表示同意或应法律要求。<br>
+                            如GIVENCHY公司受法律或法官约束，而向您传递相关个人信息，GIVENCHY公司负责尽量通知您相关事宜（除非GIVENCHY公司被认定有理由不执行，尤其应考虑其应承担的法律或司法义务）。<br>
+                            考虑到技术条件，尤其是通信网络普遍采用的技术，GIVENCHY公司不能保证您所发送的电子邮件及GIVENCHY公司接收的电子邮件的保密性、完整性和真实性。<br>
+                            2017年7月25日版 </span></p>
+            </p>
         </div>
-        <div class="main container">
-            <!-- 发现-->
-            <h5 class="text-center my-5 h5">发现</h5>
-            <div class="d-flex position-relative">
-                <a href="#" class="findp mx-3">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="images/BROWSE MEN.jpg" class="w-100 " alt=""/>
-                        <span class="findt">Givenchy x Onitsuka Tiger</span>
-                    </div>
-                </a>
-                <a href="#" class="findp mx-3">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="images/BROWSE WOMEN.jpg" class="w-100" alt=""/>
-                        <span class="findt">Givenchy x Onitsuka Tiger</span>
-                    </div>
-                </a>
-            </div>
-            <!-- 商品大类别-->
-            <div class="d-flex text-center my-5">
-                <div class="w-50 px-3">
-                    <h5>男士</h5>
-                    <ul class="d-flex flex-row flex-wrap justify-content-center">
-                        <li class="m-2"><a href="#" class="b_ordert">最新系列</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">成衣</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">包袋</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">鞋履</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">配饰</a></li>
-                    </ul>
-                </div>
-                <div class="w-50 px-3 border-left border-dark">
-                    <h5>女士</h5>
-                    <ul class="d-flex flex-row flex-wrap justify-content-center">
-                        <li class="m-2"><a href="#" class="b_ordert">最新系列</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">成衣</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">包袋</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">鞋履</a></li>
-                        <li class="m-2"><a href="#" class="b_ordert">配饰</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="my-5"><img src="images/Ariana desktop.jpg" class="w-100" alt=""/></div>
     </div>
     <!--mainEND-->
+
 
     <!-- footer尾部-->
     <footer class="container-fluid px-0 border-top border-bottom border-dark">
@@ -537,7 +637,7 @@
                 </ul>
                 <div class="col-md-6 col-sm-6 col-12">
                     <ul class="float-md-right w-50">
-                        <li><img src="images/Parfum_Linterdit.jpg" class="w-100" alt=""/></li>
+                        <li><img src="images/Parfum_Linterdit.jpg" class="w-100" alt="" /></li>
                         <li>沪公网安备 31010602001699号</li>
                         <li>沪ICP备18007175号</li>
                         <li>仿站有限公司</li>
