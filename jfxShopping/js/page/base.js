@@ -23,37 +23,23 @@ $(document).ready(function() {
         }
         st2=st;
     });
+    //登陆窗口的显示隐藏
+    $('.loginck').mouseover(function(){
+        $('.bg').css({"height":$(document).height()});
+        $('.bg').css({"display":"block"});
+    });
+    $('.loginck').mouseout(function(){
+        $('.bg').css({"display":"none"});
+    });
+    $('.accountck').mouseover(function(){
+        $('.bg').css({"height":$(document).height()});
+        $('.bg').css({"display":"block"});
+    });
+    $('.accountck').mouseout(function(){
+        $('.bg').css({"display":"none"});
+    });
+    
 });
-//登陆窗口的显示隐藏
-function showlogin(){
-    var check=$(".checksh");
-    var login=$('#login');
-    var body_bg=$("#body_bg");
-    //body_bg.css({"background":"rgba(0,0,0,.5)"});
-    if(check.css("display")=="none"){
-        login.fadeIn("fast");
-        check.css({"display":"block"});
-    }else{
-        check.css({"display":"none"});
-        login.fadeOut("fast");
-    }
-
-}
-function hidelogin(){
-    var login=$('#login');
-    login.fadeOut("fast");
-}
-function showaccount(){
-    var check=$('.afterchecksh');
-    var account=$('#account');
-    if(check.css("display")=="none"){
-        account.fadeIn("fast");
-        check.css({"display":"block"});
-    }else{
-        check.css({"display":"none"});
-        account.fadeOut("fast");
-    }
-}
 // 文本框获取焦点
 function ckfocus(id,top){
     var msg=$(id);

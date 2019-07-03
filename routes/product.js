@@ -64,4 +64,19 @@ router.get('/getinfo/:uid-:email-:pid',function(req,res){
     });
 });
 
+//根据商品id/size获取仓库信息
+router.get('/getsave/:pid-:p_size',function(req,res){
+    var $pid=req.params.pid;
+    var $p_size=req.params.p_size;
+    var sql='select * from warehouse where pid=? and p_size=?';
+    pool.query(sql,[$pid,$p_size],function(err,result){
+        if(err) throw err;
+        console.log(result+$pid+$p_size);
+        if(result.length){
+            res.send(result);
+        }else{
+            res.send("0");
+        }
+    });
+});
 module.exports=router;

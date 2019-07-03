@@ -17,6 +17,7 @@
 </head>
 
 <body onload="checklogin()">
+    <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
             <!-- 右上角的登陆和搜索按钮 -->
@@ -39,7 +40,7 @@
                                 <div>
                                     <span class="email_msg">请输入您的电子邮箱地址</span>
                                     <label class="emailnotice" for="email" id="emailck">电子邮箱地址*</label>
-                                    <div><input type="text" class="input" id="email"
+                                    <div><input type="text" class="input" id="email" autocomplete="off"
                                             onfocus="ckfocus('#emailck','20px')"
                                             onblur="ckblurs('#emailck','40px','#email')"></div>
                                 </div>

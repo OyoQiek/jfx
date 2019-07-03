@@ -9,6 +9,14 @@
 body{
     overflow-x:hidden;
 }
+.bg{
+    position: absolute;
+    top: 151px;
+    background: rgba(0, 0, 0, .5);
+    width: 100%;
+    z-index: 500;
+    display: none;
+}
 /* 顶部登陆搜索 */
 @media screen and (max-width:767.9999px){
     /* 顶部搜索按钮 */
@@ -37,6 +45,9 @@ body{
     .nav_position{
 
     }
+}
+.loginck:hover #login{
+    display: block;
 }
 .login{
     border: 0;
@@ -218,6 +229,9 @@ body{
 }
 .accountck{
     display: none;
+}
+.accountck:hover .account{
+    display: block;
 }
 .account{
     padding: 38px 30px 24px !important;

@@ -136,8 +136,7 @@ function checklogin(){
                 $('.sm_login_exit').html("<a href='index.html' class='nav-link'>注销</a>");
                 var html=$('.accountck');
                 html.html("<a href='#' class='mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small' style='cursor: pointer'"+
-                "onmouseover='showaccount()'>我的账户：<span><b>"+result.uname+"</b></span></a>"+
-                "<span class='afterchecksh'></span>"+
+                "'>我的账户：<span><b>"+result.uname+"</b></span></a>"+
                 "<div id='account' class='login account bg-white'>"+
                 "<ul class='list-unstyled'>"+
                 "<li><a href='userinfo_dd.html?uid="+uid+"&email="+email+"'>订单</a></li>"+
@@ -284,5 +283,44 @@ function chooseSize(){
 
 //加入心愿单
 function addWish(){
-    
+    var urlPar=new URLSearchParams(location.search);
+    var uid=urlPar.get("uid");
+    var email=urlPar.get("email");
+    var pid=urlPar.get("pid");
+    var size=$('.size button').text();
+    var color=$('.color').val();
+    if(size!="尺寸 " && color!=""){
+        // 查询仓库信息
+        var xhr1=new XMLHttpRequest();
+        xhr1.open('get','/product/getsave/'+pid+"-"+size,true);
+        xhr1.send();
+        xhr1.onreadystatechange=function(){
+            if(xhr1.readyState==4 && xhr1.status==200){
+                var result=xhr1.responseText;
+                if(result!=0){
+                    result=JSON.parse(result)[0];
+                    if(result.p_num!=0){
+                        // 添加到心愿单
+                        var xhr=new XMLHttpRequest();
+                        xhr.open('put','/user/addwish',true);
+                        var formdata="uid="+uid+"&email="+email+"&pid="+pid+"&p_color="+color+"&p_size="+size+"&wid="+result.wid;
+                        xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+                        xhr.send(formdata);
+                        xhr.onreadystatechange=function(){
+                            if(xhr.readyState==4 && xhr.status==200){
+                                var result1=xhr.responseText;
+                                if(result1==1){
+                                    window.location.href="userinfo_wish.html?uid="+uid+"&email="+email;
+                                }else{
+
+                                }
+                            }
+                        }
+                    }else{
+                        // 库存不足
+                    }
+                }
+            }
+        }
+    }
 }

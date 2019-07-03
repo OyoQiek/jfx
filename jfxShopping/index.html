@@ -16,6 +16,7 @@
     <script src="js/page/userAJAX.js"></script>
 </head>
 <body id="body_bg" onload="checklogin()">
+    <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
             <!-- 右上角的登陆和搜索按钮 -->
@@ -30,13 +31,12 @@
                 <div class="col-md-5 col-3 mt-3 ">
                     <ul class="d-flex justify-content-md-end">
                         <li class="loginck">
-                            <a href="login.html" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer" onmouseover="showlogin()">登陆</a>
-                            <span class="checksh"></span>
+                            <a href="login.html" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer">登陆</a>
                             <div id="login" class="collapse login bg-white" >
                                 <div>
                                     <span class="email_msg">请输入您的电子邮箱地址</span>
                                     <label class="emailnotice" for="email" id="emailck">电子邮箱地址*</label>
-                                    <div><input type="text" class="input" id="email"  onfocus="ckfocus('#emailck','20px')" onblur="ckblurs('#emailck','40px','#email')"></div>
+                                    <div><input type="text" class="input" id="email" autocomplete="off"  onfocus="ckfocus('#emailck','20px')" onblur="ckblurs('#emailck','40px','#email')"></div>
                                 </div>
                                 <div>
                                     <span class="upwd_msg">请输入您的密码</span>
@@ -57,8 +57,7 @@
                             </div>
                         </li>
                         <li class="accountck d-none d-md-block">
-                            <!--<a href="#" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer" onmouseover="showaccount()">我的账户：<span><b>x</b></span></a>
-                            <span class="afterchecksh"></span>
+                            <!--<a href="#" class="mr-3 pb-0 pt-2 d-md-inline-block d-none text-dark small" style="cursor: pointer">我的账户：<span><b>x</b></span></a>
                             <div id="account" class=" login account bg-white">
                                 <ul class="">
                                     <li class=""><a href="#">订单</a></li>

@@ -17,6 +17,7 @@
 </head>
 
 <body onload="getProductInfo()">
+    <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
             <!-- 右上角的登陆和搜索按钮 -->
@@ -39,7 +40,7 @@
                                 <div>
                                     <span class="email_msg">请输入您的电子邮箱地址</span>
                                     <label class="emailnotice" for="email" id="emailck">电子邮箱地址*</label>
-                                    <div><input type="text" class="input" id="email"
+                                    <div><input type="text" class="input" id="email" autocomplete="off"
                                             onfocus="ckfocus('#emailck','20px')"
                                             onblur="ckblurs('#emailck','40px','#email')"></div>
                                 </div>
@@ -492,13 +493,14 @@
                         <div><button class="w-100 bg-white border-0 " data-target="#info"
                                 data-toggle="collapse">更多细节+</button></div>
                         <div>
-                            <button class=" w-100 bg-white border-0">加入心愿单</button>
+                            <button class=" w-100 bg-white border-0" onclick="addWish()">加入心愿单</button>
                         </div>
                     </div>
                     <div class="collapse" id="info">
                         <p>无</p>
                         <p>产品编号：<span>无</span></p>
                         <p>材质：<span>无</span></p>
+                        <input type="hidden" class="color" value="12">
                     </div>
                     <div class="size">
                         <button class="bg-white border-left-0 border-right-0 border-dark w-100" data-toggle="collapse"

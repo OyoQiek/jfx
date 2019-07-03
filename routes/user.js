@@ -47,4 +47,21 @@ router.get('/queryuser/:uid', function (req,res) {
     });
 });
 
+//添加到心愿单
+router.put('/addwish',function(req,res){
+    var $uid=req.body.uid;
+    var $pid=req.body.pid;
+    var $p_color=req.body.p_color;
+    var $p_size=req.body.p_size;
+    var $wid=req.body.wid;
+    var sql='insert into collect values(null,?,?,?,?,?)';
+    pool.query(sql,[$uid,$pid,$p_color,$p_size,$wid],function(err,result){
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0")
+        }
+    });
+})
 module.exports=router;
