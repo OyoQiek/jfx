@@ -50,7 +50,7 @@ router.get('/findproduct/:b_order-:s_order-:p_sex-:new',function(req,res){
     
 });
 
-//getInfo获取单价商品的详情
+//getProductInfo获取单件商品的详情
 router.get('/getinfo/:uid-:email-:pid',function(req,res){
     var $pid=req.params.pid;
     var sql='select * from product where pid=?';

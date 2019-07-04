@@ -64,4 +64,22 @@ router.put('/addwish',function(req,res){
         }
     });
 })
+
+//查询心愿单
+router.get('/getwish/:uid',function(req,res){
+    var $uid=req.params.uid;
+    var sql='select * from collect inner join product on collect.pid=product.pid where uid=?';
+    pool.query(sql,[$uid],function(err,result){
+        if(err) throw err;
+        console.log($uid);
+        if(result.length){
+            res.send(result); 
+        }else{
+            res.send("0")
+        }
+    });
+});
+
+
+
 module.exports=router;
