@@ -80,6 +80,19 @@ router.get('/getwish/:uid',function(req,res){
     });
 });
 
+//删除心愿单商品
+router.delete('/delwish/:wid',(req,res)=>{
+    var $wid=req.params.wid;
+    sql='delete from collect where wid=?';
+    pool.query(sql,[$wid],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0");
+        }
+    });
+});
 
 
 module.exports=router;

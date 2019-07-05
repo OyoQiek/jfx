@@ -414,26 +414,50 @@ function getWish() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result=xhr.responseText;
             result=JSON.parse(result);
-            var html="";
-            for(var i=0;i<result.length;i++){
-                var pic = result[i].picadd.split(",");
-                html+="<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                    "<input type='checkbox' name='buy[]' class='select' />"+
-                    "<a href='#' class='d-block w-100'><img src='"+pic[0]+"' class='producthide w-100' alt=''></a>"+
-                    "<div class='productshow' style='display: none'>"+
-                        "<a href='#' class='close'><span>&times;</span></a>"+
-                        "<a href='#'><img src='"+pic[1]+"' class='w-100' alt=''></a>"+
-                        "<div class='text-center m-auto'>"+
-                            "<p>"+result[i].p_title+"</p>"+
-                            "<p>"+result[i].p_price+"</p>"+
-                            "<input type='hidden' class='color' value='" + result[i].p_color + "'/>"+
-                            "<input type='hidden' class='pid' value='" + result[i].pid + "'/>"+
+            if(result.length){
+                var html="";
+                for(var i=0;i<result.length;i++){
+                    var pic = result[i].picadd.split(",");
+                    html+="<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
+                        "<input type='checkbox' name='buy[]' class='select' />"+
+                        "<a href='#' class='d-block w-100'><img src='"+pic[0]+"' class='producthide w-100' alt=''></a>"+
+                        "<div class='productshow' style='display: none'>"+
+                            "<a href='javascript:delWish("+result[i].wid+")' class='close'><span>&times;</span></a>"+
+                            "<a href='#'><img src='"+pic[1]+"' class='w-100' alt=''></a>"+
+                            "<div class='text-center m-auto'>"+
+                                "<p>"+result[i].p_title+"</p>"+
+                                "<p>"+result[i].p_price+"</p>"+
+                                "<input type='hidden' class='color' value='" + result[i].p_color + "'/>"+
+                                "<input type='hidden' class='pid' value='" + result[i].pid + "'/>"+
+                            "</div>"+
                         "</div>"+
-                    "</div>"+
-                "</div>";
+                    "</div>";
+                }
+                $('.shownum b').html(result.length+"条");
+                $('.productlist').html(html);
+            }else{
+                $('.shownum b').html(0+"条");
+                var html="<div class='m-auto py-5'><h2>暂无商品</h2></div>";
+                $('.productlist').html(html);
+            } 
+        }
+    }
+}
+
+
+//心愿单删除
+function delWish(wid){
+    var xhr = new XMLHttpRequest();
+    xhr.open('delete', '/user/delwish/'+wid, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState==4 && xhr.status==200){
+            var result=xhr.responseText;
+            if(result==1){
+                getWish();
+            }else{
+                alert("删除失败");
             }
-            
-            $('.productlist').html(html);
         }
     }
 }

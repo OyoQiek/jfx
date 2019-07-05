@@ -26,12 +26,16 @@
     font-weight: bold;
     margin-bottom: 30px;
 }
-/*¶©µ¥ÄÚÈİ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .none{
     font-size: .75rem;
     margin-bottom: 80px;
 }
-/*ĞÄÔ¸µ¥*/
+/*å¿ƒæ„¿å•*/
+.productlist div div div{
+    position: relative;
+    width: 40%;
+}
 .wish_none{
     display: none;
 }
@@ -100,7 +104,7 @@
 .js:hover{
     top: -5px;
 }
-/*¸öÈËĞÅÏ¢*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢*/
 .person_none p{
     color: #717171;
     font-size: .75rem;
@@ -166,7 +170,7 @@
     opacity: .8;
     top: -5px;
 }
-/*µØÖ·¹ÜÀí*/
+/*ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½*/
 .address{
     background: #f6f6f6;
     margin-bottom: 40px;
