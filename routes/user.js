@@ -94,5 +94,25 @@ router.delete('/delwish/:wid',(req,res)=>{
     });
 });
 
+//修改账户信息
+router.put('/change',(req,res)=>{
+    var $uid=req.body.uid;
+    var $sex=req.body.sex;
+    var $uname=req.body.uname;
+    var $email=req.body.email;
+    var $upwd=req.body.upwd;
+    console.log($uid+$email+$sex);
+    var sql='update user set uname=?,email=?,upwd=?,sex=? where uid=?';
+    pool.query(sql,[$uname,$email,$upwd,$sex,$uid],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0");
+        }
+    });
+});
+
+
 
 module.exports=router;

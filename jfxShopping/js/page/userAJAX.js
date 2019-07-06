@@ -245,16 +245,22 @@ function findProduct() {
     var s_order = urlPar.get("s_order");
     var p_sex = urlPar.get("p_sex");
     var news = urlPar.get("new");
+    var sxq_order = $('.sxqTag_order');
+    var sxq_color = $('.sxqTag_color');
+    var sxq_size = $('.sxqTag_size');
+    sxq_order.text().charAt(0) == 0 ? sxq_order.css("display", "none") : sxq_order.css("display", "block");
+    sxq_color.text().charAt(0) == 0 ? sxq_color.css("display", "none") : sxq_color.css("display", "block");
+    sxq_size.text().charAt(0) == 0 ? sxq_size.css("display", "none") : sxq_size.css("display", "block");
     var xhr = new XMLHttpRequest();
     var title = "";
-    xhr.open('get', '/product/findproduct/' + b_order + "-" + s_order + "-" + p_sex + "-" + news, true);
+    xhr.open('get', '/product/findproduct/' + b_order + "-" + s_order + "-" + p_sex + "-" + news + "-" + sxq_order.eq(0).text().charAt(0) + "-" + sxq_color.eq(0).text().replace(/×/, "") + "-" + sxq_size.eq(0).text().replace(/×/, ""), true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             result = JSON.parse(result);
             // 获取标题
-            switch (result[0].b_order) {
+            switch (b_order) {
                 case "cy":
                     title = "成衣";
                     break;
@@ -290,24 +296,35 @@ function findProduct() {
             if (result != 0) {
                 // 按地址栏的数据将查询后的结果遍历到页面中
                 var html = "";
+                var count = 0;
                 for (var i = 0; i < result.length; i++) {
                     var arr = result[i].picadd.split(",");
-                    html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                        "<a href='productinfo.html?uid='" + uid + "&email=" + email + "&pid=" + result[i].pid + "' class='d-block w-100'><img src='" + arr[0] + "' class='producthide w-100'" +
-                        "alt=''></a>" +
-                        "<div class='productshow' style='display: none'>" +
-                        "<a href='productinfo.html?uid=" + uid + "&email=" + email + "&pid=" + result[i].pid + "'>" +
-                        "    <img src='" + arr[1] + "' class='w-100' alt=''>" +
-                        "</a>" +
-                        "    <div class='text-center m-auto'>" +
-                        "        <p>" + result[i].p_title + "</p>" +
-                        "        <p>" + result[i].p_price + "</p>" +
-                        "    </div>" +
-                        "</div>" +
-                        "</div>"
+                    var yz = "";
+                    if (i > 0) {
+                        var yz = result[i - 1].pid;
+                    }
+                    if (yz != result[i].pid) {
+                        count++;
+                        html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
+                            "<a href='productinfo.html?uid='" + uid + "&email=" + email + "&pid=" + result[i].pid + "' class='d-block w-100'><img src='" + arr[0] + "' class='producthide w-100'" +
+                            "alt=''></a>" +
+                            "<div class='productshow' style='display: none'>" +
+                            "<a href='productinfo.html?uid=" + uid + "&email=" + email + "&pid=" + result[i].pid + "'>" +
+                            "    <img src='" + arr[1] + "' class='w-100' alt=''>" +
+                            "</a>" +
+                            "    <div class='text-center m-auto'>" +
+                            "        <p>" + result[i].p_title + "</p>" +
+                            "        <p>" + result[i].p_price + "</p>" +
+                            "    </div>" +
+                            "</div>" +
+                            "</div>";
+                    }
                 }
                 $('.list_cont').html(html);
-                $('.list_number b').html(result.length + "条");
+                $('.list_number b').html(count + "条");
+            } else {
+                $('.list_cont').html("<h4 class='py-4 text-center'>敬请期待</h4>");
+                $('.list_number b').html("0条");
             }
         }
     }
@@ -408,55 +425,199 @@ function getWish() {
     var uid = urlPar.get("uid");
     var email = urlPar.get("email");
     var xhr = new XMLHttpRequest();
-    xhr.open('get', '/user/getwish/'+uid, true);
+    xhr.open('get', '/user/getwish/' + uid, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var result=xhr.responseText;
-            result=JSON.parse(result);
-            if(result.length){
-                var html="";
-                for(var i=0;i<result.length;i++){
+            var result = xhr.responseText;
+            result = JSON.parse(result);
+            if (result.length) {
+                var html = "";
+                for (var i = 0; i < result.length; i++) {
                     var pic = result[i].picadd.split(",");
-                    html+="<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                        "<input type='checkbox' name='buy[]' class='select' />"+
-                        "<a href='#' class='d-block w-100'><img src='"+pic[0]+"' class='producthide w-100' alt=''></a>"+
-                        "<div class='productshow' style='display: none'>"+
-                            "<a href='javascript:delWish("+result[i].wid+")' class='close'><span>&times;</span></a>"+
-                            "<a href='#'><img src='"+pic[1]+"' class='w-100' alt=''></a>"+
-                            "<div class='text-center m-auto'>"+
-                                "<p>"+result[i].p_title+"</p>"+
-                                "<p>"+result[i].p_price+"</p>"+
-                                "<input type='hidden' class='color' value='" + result[i].p_color + "'/>"+
-                                "<input type='hidden' class='pid' value='" + result[i].pid + "'/>"+
-                            "</div>"+
-                        "</div>"+
-                    "</div>";
+                    html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
+                        "<input type='checkbox' name='buy[]' class='select' />" +
+                        "<a href='#' class='d-block w-100'><img src='" + pic[0] + "' class='producthide w-100' alt=''></a>" +
+                        "<div class='productshow' style='display: none'>" +
+                        "<a href='javascript:delWish(" + result[i].wid + ")' class='close'><span>&times;</span></a>" +
+                        "<a href='#'><img src='" + pic[1] + "' class='w-100' alt=''></a>" +
+                        "<div class='text-center m-auto'>" +
+                        "<p>" + result[i].p_title + "</p>" +
+                        "<p>" + result[i].p_price + "</p>" +
+                        "<input type='hidden' class='color' value='" + result[i].p_color + "'/>" +
+                        "<input type='hidden' class='pid' value='" + result[i].pid + "'/>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
                 }
-                $('.shownum b').html(result.length+"条");
+                $('.shownum b').html(result.length + "条");
                 $('.productlist').html(html);
-            }else{
-                $('.shownum b').html(0+"条");
-                var html="<div class='m-auto py-5'><h2>暂无商品</h2></div>";
+            } else {
+                $('.shownum b').html(0 + "条");
+                var html = "<div class='m-auto py-5'><h2>暂无商品</h2></div>";
                 $('.productlist').html(html);
-            } 
+            }
         }
     }
 }
 
 
 //心愿单删除
-function delWish(wid){
+function delWish(wid) {
     var xhr = new XMLHttpRequest();
-    xhr.open('delete', '/user/delwish/'+wid, true);
+    xhr.open('delete', '/user/delwish/' + wid, true);
     xhr.send();
     xhr.onreadystatechange = function () {
-        if(xhr.readyState==4 && xhr.status==200){
-            var result=xhr.responseText;
-            if(result==1){
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result == 1) {
                 getWish();
-            }else{
+            } else {
                 alert("删除失败");
+            }
+        }
+    }
+}
+
+//获取个人信息
+function getPersonInfo() {
+    checklogin();
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/user/queryuser/' + uid, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            result = JSON.parse(result);
+            $('#sex').val(result.sex);
+            $('#uname').val(result.uname);
+            $('#emailreg').val(result.email);
+        }
+    }
+}
+
+//修改个人信息
+function changePersonInfo() {
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var sex = $('#sex').val();
+    var uname = $('#uname').val();
+    var email = $('#emailreg').val();
+    var upwd = $('#upwdreg').val();
+    if (sex == "none") {
+        $('.sex_msg').css({
+            "display": "block"
+        })
+        $('#sex').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.sex_msg').css({
+            "display": "none"
+        })
+        $('#sex').css({
+            "border-color": "#000"
+        })
+    }
+    if (!uname) {
+        $('.uname_msg').css({
+            "display": "block"
+        })
+        $('#uname').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.uname_msg').css({
+            "display": "none"
+        })
+        $('#uname').css({
+            "border-color": "#000"
+        })
+    }
+    if (!email) {
+        $('.emailreg_msg').css({
+            "display": "block"
+        })
+        $('#emailreg').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.emailreg_msg').css({
+            "display": "none"
+        })
+        $('#emailreg').css({
+            "border-color": "#000"
+        })
+    }
+    if (!upwd || upwd.length < 8) {
+        $('.upwdreg_msg').css({
+            "display": "block"
+        })
+        $('#upwdreg').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.upwdreg_msg').css({
+            "display": "none"
+        })
+        $('#upwdreg').css({
+            "border-color": "#000"
+        })
+    }
+    if (sex == "none" || !uname || !email || !upwd || upwd.length < 8) {
+        return false;
+    }
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open('get', '/user/queryuser/' + uid, true);
+    xhr1.send();
+    xhr1.onreadystatechange = function () {
+        if (xhr1.readyState == 4 && xhr1.status == 200) {
+            var result1 = xhr1.responseText;
+            if (result1) {
+                result1 = JSON.parse(result1);
+                if (result1.uid == uid && result1.email == email) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('put', '/user/change', true);
+                    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+                    var formdata = "uid=" + uid + "&sex=" + sex + "&uname=" + uname + "&email=" + email + "&upwd=" + upwd;
+                    xhr.send(formdata);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var result = xhr.responseText;
+                            if (result == 1) {
+                                window.location.href = "userinfo_person.html?uid=" + uid + "&email=" + email;
+                            } else {
+                                alert("请求超时");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//搜索商品
+function searchShop() {
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var email = url.get("email");
+    var shop=$('#searchcont').val();
+    console.log(shop);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/product/search/'+shop, true);
+    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result.length) {
+                result=JSON.parse(result);
+                window.location.href = "list.html?uid=" + uid + "&email=" + email + "&b_order=" + result[0].b_order + "&s_order=" + result[0].s_order + "&p_sex=" + result[0].p_sex + "&new=0";
+            } else {
+                alert("请求超时");
             }
         }
     }

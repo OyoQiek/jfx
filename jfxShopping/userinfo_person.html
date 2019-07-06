@@ -16,7 +16,7 @@
     <script src="js/page/userAJAX.js"></script>
 </head>
 
-<body onload="checklogin()">
+<body onload="getPersonInfo()">
     <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
@@ -466,10 +466,10 @@
     <div class="container px-0" id="main">
         <div class="usernav">
             <ul class="nav">
-                <li class="nav-item mx-1"><a href="#" class="nav-item">订单</a></li>
-                <li class="nav-item mx-1"><a href="#" class="nav-item">心愿单</a></li>
-                <li class="nav-item active mx-1"><a href="#" class="nav-item">个人信息</a></li>
-                <li class="nav-item mx-1"><a href="#" class="nav-item">地址</a></li>
+                <li class="nav-item mx-1"><a href="#" class="nav-item" onclick="choosePersonInfo('userinfo_dd.html')">订单</a></li>
+                <li class="nav-item mx-1"><a href="#" class="nav-item" onclick="choosePersonInfo('userinfo_wish.html')">心愿单</a></li>
+                <li class="nav-item active mx-1"><a href="#" class="nav-item" onclick="choosePersonInfo('userinfo_person.html')">个人信息</a></li>
+                <li class="nav-item mx-1"><a href="#" class="nav-item" onclick="choosePersonInfo('userinfo_address.html')">地址</a></li>
             </ul>
         </div>
         <!-- 订单-->
@@ -481,34 +481,34 @@
                 <div class="personform">
                     <div class="w-50 mx-auto d-flex flex-column regform">
                         <div class="d-flex flex-column">
-                            <span>请填写您的问候语</span>
+                            <span class="sex_msg">请填写您的问候语</span>
                             <select name="" id="sex">
-                                <option>称谓*</option>
+                                <option value="none">称谓*</option>
                                 <option value="1">先生</option>
                                 <option value="0">女士</option>
                             </select>
                         </div>
                         <div class="d-flex flex-column">
-                            <span>请填写您的名字</span>
+                            <span class="uname_msg">请填写您的名字</span>
                             <label for="uname" class="inputnotice" id="unamenotice">名字*</label>
                             <input type="text" id="uname" value="asd" onfocus="ckfocus('#unamenotice','10%','.5rem')"
                                 onblur="ckblur('#unamenotice','55%','1rem','#uname')" />
                         </div>
                         <div class="d-flex flex-column">
-                            <span>请输入您的电子邮箱地址</span>
+                            <span class="emailreg_msg">请输入您的电子邮箱地址</span>
                             <label for="emailreg" class="inputnotice" id="emailnotice">电子邮箱地址*</label>
                             <input type="text" value="asd" id="emailreg" onfocus="ckfocus('#emailnotice','10%','.5rem')"
                                 onblur="ckblur('#emailnotice','55%','1rem','#emailreg')" />
                         </div>
                         <div class="d-flex flex-column">
-                            <span>此为必填字段。</span>
+                            <span class="upwdreg_msg">此为必填字段。</span>
                             <label for="upwd" class="inputnotice" id="upwdnotice">密码*</label>
                             <input type="text" id="upwdreg" onfocus="ckfocus('#upwdnotice','10%','.5rem')"
                                 onblur="ckblur('#upwdnotice','55%','1rem','#upwdreg')" />
                         </div>
                         <span>请输入至少含有8个字符的密码</span>
                         <div class="my-5 text-center">
-                            <button>保存账户</button>
+                            <button onclick="changePersonInfo()">保存账户</button>
                         </div>
                     </div>
                 </div>

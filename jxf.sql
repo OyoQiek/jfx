@@ -49,5 +49,5 @@ create table warehouse(
     pid int,
     p_color varchar(10),
     p_size varchar(10),
-    p_num  varchar(20)
+    p_save varchar(20)
 );

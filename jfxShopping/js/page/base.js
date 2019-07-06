@@ -39,7 +39,13 @@ $(document).ready(function() {
         $('.bg').css({"display":"none"});
     });
     
+    //筛选器的选中和删除
+    chooseSxq();
 });
+
+
+
+
 // 文本框获取焦点
 function ckfocus(id,top){
     var msg=$(id);
@@ -95,7 +101,32 @@ function showsxq(id, state) {
         });
     }
 }
-
+//筛选器的选中
+function chooseSxq(){
+    $('#ordersxq div ul li a').on("click",function(){
+        var index=$('#ordersxq div ul li a').index(this);
+        var order=$('#ordersxq div ul li a').eq(index).text();
+        $('.sxqTag_order').html(order+"<span class='float-right pl-3 pr-1' onclick=delSxq('"+".sxqprice'"+")>&times;</span>");
+        findProduct();
+    });
+    $('#colorsxq div ul li a').on("click",function(){
+        var index=$('#colorsxq div ul li a').index(this);
+        var color=$('#colorsxq div ul li a').eq(index).text();
+        $('.sxqTag_color').html(color+"<span class='float-right pl-3 pr-1' onclick=delSxq('"+".sxqcolor'"+")>&times;</span>");
+        findProduct();
+    });
+    $('#sizesxq div ul li a').on("click",function(){
+        var index=$('#sizesxq div ul li a').index(this);
+        var size=$('#sizesxq div ul li a').eq(index).text();
+        $('.sxqTag_size').html(size+"<span class='float-right pl-3 pr-1' onclick=delSxq('"+".sxqsize'"+")>&times;</span>");
+        findProduct();
+    });
+}
+//筛选器的删除
+function delSxq(delcla){
+    $(delcla).html("0<span class='float-right pl-3 pr-1'>&times;</span>");
+    findProduct();
+}
 //列表页产品变换
 function productchange(hide,show){
     var hide=$(hide);
@@ -118,5 +149,13 @@ function productchange(hide,show){
     //     hide.css({"display":"block"});
     //     show.css({"display":"none"});
     // });
+}
+
+//个人信息页面跳转
+function choosePersonInfo(page){
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var email = url.get("email");
+    window.location.href = page+"?uid=" + uid + "&email=" + email;
 }
 
