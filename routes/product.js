@@ -88,6 +88,8 @@ router.get('/findproduct/:b_order-:s_order-:p_sex-:new-:sxq_order-:sxq_color-:sx
             sql="select * from product inner join warehouse on product.pid=warehouse.pid where p_save!=0 and b_order=? and s_order=? and p_sex=? and warehouse.p_size='"+$sxq_size+"' order by up_date desc";
         }else if($sxq_order==0 && $sxq_color!=0 && $sxq_size==0){
             sql="select * from product inner join warehouse on product.pid=warehouse.pid where p_save!=0 and b_order=? and s_order=? and p_sex=? and product.p_color='"+$sxq_color+"' order by up_date desc";
+        }else if($p_sex==2){
+            sql="select * from product where b_order=? and s_order=? order by up_date desc";
         }else{
             sql="select * from product where b_order=? and s_order=? and p_sex=? order by up_date desc";
         }
@@ -140,7 +142,7 @@ router.get('/search/:shop',(req,res)=>{
     var $shop=req.params.shop;
     console.log($shop);
     var sql=" ";
-    pool.query("select * from product where p_info like '%?%'",[$shop],(err,result)=>{
+    pool.query("select * from product where p_info like '%"+$shop+"%'",(err,result)=>{
         if(err) throw err;
         if(result.length){
             res.send(result);

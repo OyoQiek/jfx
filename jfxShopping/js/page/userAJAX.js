@@ -608,14 +608,13 @@ function searchShop() {
     console.log(shop);
     var xhr = new XMLHttpRequest();
     xhr.open('get', '/product/search/'+shop, true);
-    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             if (result.length) {
                 result=JSON.parse(result);
-                window.location.href = "list.html?uid=" + uid + "&email=" + email + "&b_order=" + result[0].b_order + "&s_order=" + result[0].s_order + "&p_sex=" + result[0].p_sex + "&new=0";
+                window.location.href = "list.html?uid=" + uid + "&email=" + email + "&b_order=" + result[0].b_order + "&s_order=" + result[0].s_order + "&p_sex=2&new=0";
             } else {
                 alert("请求超时");
             }
