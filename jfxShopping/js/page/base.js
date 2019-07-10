@@ -1,16 +1,17 @@
-/*顶部吸附*/
+
 $(document).ready(function() {
+    /*顶部吸附*/
     $('ul').addClass("list-unstyled");
     var ie6 = document.all;
     var dv = $('#navbar');
     dv.css({ 'position': 'static' })
     var st=0;
     var st2=st;
-    //dv.attr('otop', dv.offset().top); //�洢ԭ���ľ��붥���ľ���
+    //dv.attr('otop', dv.offset().top); //
     $(window).scroll(function() {
         st = Math.max(document.body.scrollTop || document.documentElement.scrollTop);
         if (st>45 && st <= st2) {
-            if (ie6) { //IE6��֧��fixed���ԣ�����ֻ�ܿ�����positionΪabsolute��topʵ�ִ�Ч��
+            if (ie6) { //IE6�
                 dv.css({ position: 'absolute', top: st });
                 dv.css('transition','position 5s ease-in-out');
             } else if (dv.css('position') != 'fixed'){
@@ -41,6 +42,11 @@ $(document).ready(function() {
     
     //筛选器的选中和删除
     chooseSxq();
+
+    //导航栏的显示与隐藏
+
+
+    //
 });
 
 

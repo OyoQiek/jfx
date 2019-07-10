@@ -28,7 +28,7 @@
                 </div>
                 <!-- LOGO -->
                 <div class="col-md-2 col-2 pt-4 pb-3 p-md-4">
-                    <img src="images/logo.png" class="logo w-100 h-100" alt="">
+                    <a href="javascript:toIndex()"><img src="images/logo.png" class="logo w-100 h-100" alt=""></a>
                 </div>
                 <div class="col-md-5 col-3 mt-3 ">
                     <ul class="d-flex justify-content-md-end">
@@ -52,7 +52,7 @@
                                             onblur="ckblurs('#upwdck','40px','#upwd')"></div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-block bg-dark mt-4 text-white">登陆</button>
+                                    <button class="btn btn-block bg-dark mt-4 text-white" onclick="s_login()">登陆</button>
                                 </div>
                                 <div class="form-check px-0">
                                     <input type="checkbox" id="rember" class="form-check-label" value=""><label
@@ -60,7 +60,7 @@
                                 </div>
                                 <div>
                                     <a href="#" class="loginregforget text-dark">忘记密码？</a>
-                                    <a href="#" class="loginregforget text-dark">没有账户？</a>
+                                    <a href="register.html" class="loginregforget text-dark">没有账户？</a>
                                 </div>
                             </div>
                         </li>
@@ -504,39 +504,40 @@
                                 <div class="d-flex flex-column align-items-end">
                                     <span class="addname_msg">请输入您的地址名称</span>
                                     <label for="addname" id="addnamenotice1">地址名称*</label>
-                                    <input type="text" id="addname1"
-                                        onfocus="ckblurs('#addnamenotice1','5px','.5rem')"
+                                    <input type="text" id="addname1" value="1"
+                                        onfocus="ckfocus('#addnamenotice1','5px','.5rem')"
                                         onblur="ckblur('#addnamenotice1','25px','1rem','#addname1')" />
                                 </div>
                                 <div class="d-flex flex-column align-items-end">
                                     <span class="username_msg">请填写名字</span>
                                     <label for="username" id="usernamenotice1">收件人姓名*</label>
-                                    <input type="text" id="username1"
-                                        onfocus="ckblurs('#usernamenotice1','5px','.5rem')"
+                                    <input type="text" id="username1" value="1"
+                                        onfocus="ckfocus('#usernamenotice1','5px','.5rem')"
                                         onblur="ckblur('#usernamenotice1','25px','1rem','#username1')" />
                                 </div>
                                 <div class="d-flex flex-column align-items-end">
                                     <span class="address_msg">请输入您的地址</span>
                                     <label for="address" id="addressnotice1">地址*</label>
-                                    <input type="text" id="address1"
-                                        onfocus="ckblurs('#addressnotice1','5px','.5rem')"
+                                    <input type="text" id="address1" value="1"
+                                        onfocus="ckfocus('#addressnotice1','5px','.5rem')"
                                         onblur="ckblur('#addressnotice1','25px','1rem','#address1')" />
                                 </div>
                                 <div class="d-flex flex-column align-items-end">
                                     <span class="cityname_msg">请输入您的城市</span>
                                     <label for="cityname" id="citynamenotice1">城市*</label>
-                                    <input type="text" id="cityname1"
-                                        onfocus="ckblurs('#citynamenotice1','5px','.5rem')"
+                                    <input type="text" id="cityname1" value="1"
+                                        onfocus="ckfocus('#citynamenotice1','5px','.5rem')"
                                         onblur="ckblur('#citynamenotice1','25px','1rem','#cityname1')" />
                                 </div>
                                 <div class="d-flex flex-column align-items-end">
                                     <span class="phone_msg">请输入您的电话</span>
                                     <label for="phone" id="phonenotice1">电话*</label>
-                                    <input type="text" id="phone1" onfocus="ckblurs('#phonenotice1','5px','.5rem')"
+                                    <input type="text" id="phone1" value="1" onfocus="ckfocus('#phonenotice1','5px','.5rem')"
                                         onblur="ckblur('#phonenotice1','25px','1rem','#phone1')" />
                                 </div>
+                                <input type="hidden" value="1" class="add_id">
                                 <div>
-                                    <button>保存修改</button>
+                                    <button onclick="editAddress()">保存修改</button>
                                 </div>
                             </div>
                         </div>

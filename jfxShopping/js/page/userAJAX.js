@@ -162,6 +162,79 @@ function login() {
     }
 }
 
+//小窗口登陆
+function s_login() {
+    var email = $('#email').val();
+    var upwd = $('#upwd').val();
+    if (!email) {
+        $('.email_msg').css({
+            "display": "block"
+        });
+        $('#email').css({
+            "border-color": "#f00"
+        });
+    } else {
+        $('.email_msg').css({
+            "display": "none"
+        });
+        $('#email').css({
+            "border-color": "#000"
+        });
+    }
+    if (!upwd) {
+        $('.upwd_msg').css({
+            "display": "block"
+        });
+        $('.upwd_msg').text("请输入您的密码");
+        $('#upwd').css({
+            "border-color": "#f00"
+        })
+        return false;
+    } else {
+        $('.upwd_msg').css({
+            "display": "none"
+        });
+        $('#upwd').css({
+            "border-color": "#000"
+        });
+    }
+    if (upwd.length < 8) {
+        $('.upwd_msg').css({
+            "display": "block"
+        });
+        $('.upwd_msg').text("密码格式错误");
+        $('#upwdlogin').css({
+            "border-color": "#f00"
+        });
+    } else {
+        $('.upwd_msg').css({
+            "display": "none"
+        })
+        $('#upwd').css({
+            "border-color": "#000"
+        })
+    }
+    if (!email || !upwd || upwd.length < 8) {
+        return false;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/user/login', true);
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+    var formdata = "email=" + email + "&upwd=" + upwd;
+    xhr.send(formdata);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result == 0) {
+                alert("用户名或密码错误！");
+            } else {
+                result = JSON.parse(result);
+                window.location.href = "index.html?uid=" + result.uid + "&email=" + result.email;
+            }
+        }
+    }
+}
+
 //判断当前是否是用户登陆状态
 function checklogin() {
     var url = new URLSearchParams(location.search);
@@ -234,6 +307,13 @@ function toList(b_order, s_order, p_sex, news) {
     window.location.href = "list.html?uid=" + uid + "&email=" + email + "&b_order=" + b_order + "&s_order=" + s_order + "&p_sex=" + p_sex + "&new=" + news;
 }
 
+// LOGO跳转
+function toIndex() {
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var email = url.get("email");
+    window.location.href = "index.html?uid=" + uid + "&email=" + email;
+}
 
 //商品查询  在列表页加载
 function findProduct() {
@@ -436,14 +516,16 @@ function getWish() {
                 for (var i = 0; i < result.length; i++) {
                     var pic = result[i].picadd.split(",");
                     html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                        "<input type='checkbox' name='buy[]' class='select' />" +
+                        "<input type='checkbox' name='buy[]' class='select' value='"+ result[i].p_price+"' onclick='getTotal()'/>" +
+                        "<span class='d-none'>"+result[i].pid+"</span>"+
                         "<a href='#' class='d-block w-100'><img src='" + pic[0] + "' class='producthide w-100' alt=''></a>" +
                         "<div class='productshow' style='display: none'>" +
                         "<a href='javascript:delWish(" + result[i].wid + ")' class='close'><span>&times;</span></a>" +
                         "<a href='#'><img src='" + pic[1] + "' class='w-100' alt=''></a>" +
                         "<div class='text-center m-auto'>" +
-                        "<p>" + result[i].p_title + "</p>" +
-                        "<p>" + result[i].p_price + "</p>" +
+                        "<p>" + result[i].p_title + "<b class='ml-2'>"+result[i].p_size+"</b></p>" +
+                        "<p class='wishPrice'>" + result[i].p_price + "</p>" +
+                        ""+
                         "<input type='hidden' class='color' value='" + result[i].p_color + "'/>" +
                         "<input type='hidden' class='pid' value='" + result[i].pid + "'/>" +
                         "</div>" +
@@ -639,7 +721,7 @@ function showAddress(){
                 result=JSON.parse(result);
                 var state="";
                 for(var i=0;i<result.length;i++){
-                    result[i].address_state==0?state="<li class='before'><a href='#'>设为默认地址</a></li>":state="<li class='before'>(默认地址)</li>";//盘对是否为默认地址
+                    result[i].address_state==0?state="<li class='before'><a href='javascript:defaultAdd("+result[i].address_id+")'>设为默认地址</a></li>":state="<li class='before'>(默认地址)</li>";//盘对是否为默认地址
                     html+="<li class='d-flex flex-column col-md-4 col-12 mt-3'>"+
                                 "<ul class='text-left mb-3 list-unstyled'>"+
                                     "<li class='address_title'>"+result[i].addressname+"</li>"+
@@ -648,7 +730,7 @@ function showAddress(){
                                     "<li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>"+
                                 "</ul>"+
                                 "<ul class='d-flex flex-row flex-nowrap list-unstyled'>"+
-                                    "<li><a href='#change' data-toggle='modal'>编辑</a></li>"+
+                                    "<li><a href='#change' data-toggle='modal' onclick='findAddress("+result[i].address_id+")'>编辑</a></li>"+
                                     "<li class='before'><a href='javascript:delAddress("+result[i].address_id+")'>删除</a></li>"+
                                     state+//添加设置默认地址按钮
                                 "</ul>"+
@@ -775,5 +857,89 @@ function addAddress(){
 
 //删除收货地址
 function delAddress(add_id){
-    
+    var xhr = new XMLHttpRequest();
+    xhr.open('delete', '/user/deladdress/'+add_id, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result==1){
+                showAddress();
+            }else{
+                alert("删除地址失败");
+            }
+        }
+    }
+}
+
+//设置默认收货地址
+function defaultAdd(add_id){
+    var xhr = new XMLHttpRequest();
+    xhr.open('put', '/user/setdefaultadd', true);
+    var formdata="add_id="+add_id;
+    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    xhr.send(formdata);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result==1){
+                showAddress();
+            }else{
+                alert("设置地址失败");
+            }
+        }
+    }
+}
+
+//编辑收货地址信息
+function findAddress(add_id){
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/user/findaddress/'+add_id, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result){
+                result=JSON.parse(result)[0];
+                $('#addname1').val(result.addressname);
+                $('#username1').val(result.username);
+                $('#address1').val(result.address);
+                $('#cityname1').val(result.cityname);
+                $('#phone1').val(result.phone);
+                $('.add_id').val(result.address_id)
+            }else{
+                alert("编辑地址失败");
+            }
+        }
+    }
+}
+
+//编辑收货地址信息
+function editAddress(){
+    var add_id=$('.add_id').val();
+    var xhr = new XMLHttpRequest();
+    xhr.open('put', '/user/editaddress', true);
+    var formdata="add_id="+add_id+"&username="+$('#username1').val()+"&addname="+$('#addname1').val()+"&cityname="+$('#cityname1').val()+"&address="+$('#address1').val()+"&phone="+$('#phone1').val();
+    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    xhr.send(formdata);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result==1){
+                $('#change').modal('hide');
+                showAddress();
+            }else{
+                alert("保存地址失败");
+            }
+        }
+    }
+}
+
+//选中心愿单商品计算价格
+function getTotal(){
+    var num=$('');
+    var text = $("input:checkbox[name='buy[]']:checked").map(function(index,elem) {
+        return $(elem).val();;
+    }).get().join(',');
+    console.log("选中的checkbox的值为："+text);
 }

@@ -113,7 +113,7 @@ router.put('/change',(req,res)=>{
     });
 });
 
-//获取收获地址信息
+//获取user收获地址信息
 router.get('/getaddress/:uid',(req,res)=>{
     var $uid=req.params.uid;
     var sql="select * from user_address where uid=?";
@@ -137,6 +137,73 @@ router.post('/addaddress',(req,res)=>{
     var $phone=req.body.phone;
     var sql="insert into user_address values(null,?,?,?,?,?,0,?);";
     pool.query(sql,[$uid,$username,$addname,$cityname,$address,$phone],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0");
+        }
+    });
+});
+
+//删除收货地址
+router.delete('/deladdress/:add_id',(req,res)=>{
+    var $add_id=req.params.add_id;
+    var sql="delete from user_address where address_id=?";
+    pool.query(sql,[$add_id],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0");
+        }
+    });
+});
+
+//设置默认收货地址
+router.put('/setdefaultadd',(req,res)=>{
+    var $add_id=req.body.add_id;
+    pool.query('update user_address set address_state=0',(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            pool.query('update user_address set address_state=1 where address_id=?',[$add_id],(err1,result1)=>{
+                if(err1) throw err1;
+                if(result1.affectedRows>0){
+                    res.send("1");
+                }else{
+                    res.send("0");
+                }
+            });
+        }else{
+            res.send("0")
+        }
+    });
+});
+
+//获取单个收货地址信息
+router.get('/findaddress/:add_id',(req,res)=>{
+    var $add_id=req.params.add_id;
+    var sql='select * from user_address where address_id=?';
+    pool.query(sql,[$add_id],(err,result)=>{
+        if(err) throw err;
+        if(result.length){
+            res.send(result);
+        }else{
+            res.send("0");
+        }
+    })
+});
+
+//编辑保存单个收货地址信息
+router.put('/editaddress',(req,res)=>{
+    var $add_id=req.body.add_id;
+    var $addname=req.body.addname;
+    var $username=req.body.username;
+    var $address=req.body.address;
+    var $cityname=req.body.cityname;
+    var $phone=req.body.phone;
+    var sql="update user_address set username=?,addressname=?,cityname=?,address=?,phone=? where address_id=?";
+    pool.query(sql,[$username,$addname,$cityname,$address,$phone,$add_id],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
             res.send("1");

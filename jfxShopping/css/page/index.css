@@ -30,10 +30,10 @@
     overflow: hidden;
 }
 .findp img{
-    transition: all 7s !important;
+    transition: all .5s !important;
 }
 .findp img:hover{
-    transform: scale(1.5) !important;
+    transform: scale(1.1) !important;
 }
 .b_ordert{
     font-size: 0.8rem;

@@ -26,7 +26,7 @@
                 </div>
                 <!-- LOGO -->
                 <div class="col-md-2 col-2 pt-4 pb-3 p-md-4">
-                    <img src="images/logo.png" class="logo w-100 h-100" alt="">
+                    <a href="javascript:toIndex()"><img src="images/logo.png" class="logo w-100 h-100" alt=""></a>
                 </div>
                 <div class="col-md-5 col-3 mt-3 ">
                     <ul class="d-flex justify-content-md-end">
@@ -44,7 +44,7 @@
                                     <div><input type="password" class="input" id="upwd"  onfocus="ckfocus('#upwdck','20px')" onblur="ckblurs('#upwdck','40px','#upwd')"></div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-block bg-dark mt-4 text-white">登陆</button>
+                                    <button class="btn btn-block bg-dark mt-4 text-white" onclick="s_login()">登陆</button>
                                 </div>
                                 <div class="form-check px-0">
                                     <input type="checkbox" id="rember" class="form-check-label" value=""><label
@@ -52,7 +52,7 @@
                                 </div>
                                 <div>
                                     <a href="#" class="loginregforget text-dark">忘记密码？</a>
-                                    <a href="#" class="loginregforget text-dark">没有账户？</a>
+                                    <a href="register.html" class="loginregforget text-dark">没有账户？</a>
                                 </div>
                             </div>
                         </li>
