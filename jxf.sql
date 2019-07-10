@@ -13,6 +13,7 @@ create table user(
 create table user_address(
     address_id int primary key not null auto_increment,
     uid int,
+    username varchar(32),
     addressname varchar(32),
     cityname varchar(32),
     address varchar(32),

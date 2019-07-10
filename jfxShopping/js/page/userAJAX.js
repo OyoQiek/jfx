@@ -621,3 +621,159 @@ function searchShop() {
         }
     }
 }
+
+//地址信息加载
+function showAddress(){
+    checklogin();
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/user/getaddress/'+uid, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            var html="";
+            if(result!=0){
+                $('.address_none').css("display","none");
+                result=JSON.parse(result);
+                var state="";
+                for(var i=0;i<result.length;i++){
+                    result[i].address_state==0?state="<li class='before'><a href='#'>设为默认地址</a></li>":state="<li class='before'>(默认地址)</li>";//盘对是否为默认地址
+                    html+="<li class='d-flex flex-column col-md-4 col-12 mt-3'>"+
+                                "<ul class='text-left mb-3 list-unstyled'>"+
+                                    "<li class='address_title'>"+result[i].addressname+"</li>"+
+                                    "<li class='username text-muted'>"+result[i].username+"</li>"+
+                                    "<li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>"+
+                                    "<li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>"+
+                                "</ul>"+
+                                "<ul class='d-flex flex-row flex-nowrap list-unstyled'>"+
+                                    "<li><a href='#change' data-toggle='modal'>编辑</a></li>"+
+                                    "<li class='before'><a href='javascript:delAddress("+result[i].address_id+")'>删除</a></li>"+
+                                    state+//添加设置默认地址按钮
+                                "</ul>"+
+                            "</li>";
+                }
+                $('.addresslist').html(html);
+            }else{
+                $('.address_none').css("display","block");
+            }
+        }
+    }
+}
+
+
+//收货地址添加
+function addAddress(){
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var addname=$('#addname').val();
+    var username=$('#username').val();
+    var address=$('#address').val();
+    var cityname=$('#cityname').val();
+    var phone=$('#phone').val();
+    if (!addname) {
+        $('.addname_msg').css({
+            "display": "block"
+        })
+        $('#addname').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.addname_msg').css({
+            "display": "none"
+        })
+        $('#addname').css({
+            "border-color": "#000"
+        })
+    }
+    if (!username) {
+        $('.username_msg').css({
+            "display": "block"
+        })
+        $('#username').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.username_msg').css({
+            "display": "none"
+        })
+        $('#username').css({
+            "border-color": "#000"
+        })
+    }
+    if (!address) {
+        $('.address_msg').css({
+            "display": "block"
+        })
+        $('#address').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.address_msg').css({
+            "display": "none"
+        })
+        $('#address').css({
+            "border-color": "#000"
+        })
+    }
+    if (!cityname) {
+        $('.cityname_msg').css({
+            "display": "block"
+        })
+        $('#cityname').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.cityname_msg').css({
+            "display": "none"
+        })
+        $('#cityname').css({
+            "border-color": "#000"
+        })
+    }
+    if (!phone) {
+        $('.phone_msg').css({
+            "display": "block"
+        })
+        $('#phone').css({
+            "border-color": "#f00"
+        })
+    } else {
+        $('.phone_msg').css({
+            "display": "none"
+        })
+        $('#phone').css({
+            "border-color": "#000"
+        })
+    }
+    if(!addname || !username || !address || !cityname || !phone){
+        return false;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/user/addaddress', true);
+    var formdata="uid="+uid+"&addname="+addname+"&username="+username+"&address="+address+"&cityname="+cityname+"&phone="+phone;
+    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    xhr.send(formdata);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result==1){
+                $('#addname').val("");
+                $('#username').val("");
+                $('#address').val("");
+                $('#cityname').val("");
+                $('#phone').val("");
+                $('#modal').modal('hide');
+                showAddress();
+            }else{
+                alert("添加地址失败");
+            }
+        }
+    }
+}
+
+//删除收货地址
+function delAddress(add_id){
+    
+}

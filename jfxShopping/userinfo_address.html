@@ -16,7 +16,7 @@
     <script src="js/page/userAJAX.js"></script>
 </head>
 
-<body onload="checklogin()">
+<body onload="showAddress()">
     <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
@@ -478,8 +478,8 @@
             <h3>订单</h3>
             <div class="address">
                 <div class="address_none">您尚未注册任何地址</div>
-                <ul class="d-flex flex-row flex-wrap">
-                    <li class="d-flex flex-column col-md-4 col-12 mt-3">
+                <ul class="d-flex flex-row flex-wrap addresslist">
+                    <!--<li class="d-flex flex-column col-md-4 col-12 mt-3">
                         <ul class="text-left mb-3">
                             <li class="address_title">1</li>
                             <li class="username text-muted">帅气X</li>
@@ -487,51 +487,61 @@
                             <li class="phone text-muted">电话：<span>13776522847</span></li>
                         </ul>
                         <ul class=" d-flex flex-row flex-nowrap">
-                            <li><a href="#">编辑</a></li>
+                            <li><a href="#change" data-toggle="modal">编辑</a></li>
                             <li class="before"><a href="#">删除</a></li>
                             <li class="before"><a href="#">设为默认地址</a></li>
                         </ul>
-                    </li>
-                    <li class="d-flex flex-column col-md-4 col-12 mt-3">
-                        <ul class="text-left mb-3">
-                            <li class="address_title">1</li>
-                            <li class="username text-muted">帅气X</li>
-                            <li class="address p-0 m-0 text-muted">杭州<br />五联东苑</li>
-                            <li class="phone text-muted">电话：<span>13776522847</span></li>
-                        </ul>
-                        <ul class=" d-flex flex-row flex-nowrap">
-                            <li><a href="#">编辑</a></li>
-                            <li class="before"><a href="#">删除</a></li>
-                            <li class="before"><a href="#">设为默认地址</a></li>
-                        </ul>
-                    </li>
-                    <li class="d-flex flex-column col-md-4 col-12 mt-3">
-                        <ul class="text-left mb-3">
-                            <li class="address_title">1</li>
-                            <li class="username text-muted">帅气X</li>
-                            <li class="address p-0 m-0 text-muted">杭州<br />五联东苑</li>
-                            <li class="phone text-muted">电话：<span>13776522847</span></li>
-                        </ul>
-                        <ul class=" d-flex flex-row flex-nowrap">
-                            <li><a href="#">编辑</a></li>
-                            <li class="before"><a href="#">删除</a></li>
-                            <li class="before"><a href="#">设为默认地址</a></li>
-                        </ul>
-                    </li>
-                    <li class="d-flex flex-column col-md-4 col-12 mt-3">
-                        <ul class="text-left mb-3">
-                            <li class="address_title">1</li>
-                            <li class="username text-muted">帅气X</li>
-                            <li class="address p-0 m-0 text-muted">杭州<br />五联东苑</li>
-                            <li class="phone text-muted">电话：<span>13776522847</span></li>
-                        </ul>
-                        <ul class=" d-flex flex-row flex-nowrap">
-                            <li><a href="#">编辑</a></li>
-                            <li class="before"><a href="#">删除</a></li>
-                            <li class="before"><a href="#">设为默认地址</a></li>
-                        </ul>
-                    </li>
+                    </li>-->
+                    
                 </ul>
+                <div id="change" class="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center">
+                                <h3 class="mb-0">修改地址</h3>
+                            </div>
+                            <div class="modal-content">
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="addname_msg">请输入您的地址名称</span>
+                                    <label for="addname" id="addnamenotice1">地址名称*</label>
+                                    <input type="text" id="addname1"
+                                        onfocus="ckblurs('#addnamenotice1','5px','.5rem')"
+                                        onblur="ckblur('#addnamenotice1','25px','1rem','#addname1')" />
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="username_msg">请填写名字</span>
+                                    <label for="username" id="usernamenotice1">收件人姓名*</label>
+                                    <input type="text" id="username1"
+                                        onfocus="ckblurs('#usernamenotice1','5px','.5rem')"
+                                        onblur="ckblur('#usernamenotice1','25px','1rem','#username1')" />
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="address_msg">请输入您的地址</span>
+                                    <label for="address" id="addressnotice1">地址*</label>
+                                    <input type="text" id="address1"
+                                        onfocus="ckblurs('#addressnotice1','5px','.5rem')"
+                                        onblur="ckblur('#addressnotice1','25px','1rem','#address1')" />
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="cityname_msg">请输入您的城市</span>
+                                    <label for="cityname" id="citynamenotice1">城市*</label>
+                                    <input type="text" id="cityname1"
+                                        onfocus="ckblurs('#citynamenotice1','5px','.5rem')"
+                                        onblur="ckblur('#citynamenotice1','25px','1rem','#cityname1')" />
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="phone_msg">请输入您的电话</span>
+                                    <label for="phone" id="phonenotice1">电话*</label>
+                                    <input type="text" id="phone1" onfocus="ckblurs('#phonenotice1','5px','.5rem')"
+                                        onblur="ckblur('#phonenotice1','25px','1rem','#phone1')" />
+                                </div>
+                                <div>
+                                    <button>保存修改</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="createadd">
                     <button data-target="#modal" data-toggle="modal">创建新地址</button>
                     <div id="modal" class="modal">
@@ -576,7 +586,7 @@
                                             onblur="ckblur('#phonenotice','25px','1rem','#phone')" />
                                     </div>
                                     <div>
-                                        <button>应用</button>
+                                        <button onclick="addAddress()">应用</button>
                                     </div>
                                 </div>
                             </div>

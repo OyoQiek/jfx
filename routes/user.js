@@ -113,6 +113,37 @@ router.put('/change',(req,res)=>{
     });
 });
 
+//获取收获地址信息
+router.get('/getaddress/:uid',(req,res)=>{
+    var $uid=req.params.uid;
+    var sql="select * from user_address where uid=?";
+    pool.query(sql,[$uid],(err,result)=>{
+        if(err) throw err;
+        if(result.length){
+            res.send(result);
+        }else{
+            res.send("0");
+        }
+    });
+});
 
+//添加收货地址
+router.post('/addaddress',(req,res)=>{
+    var $uid=req.body.uid;
+    var $addname=req.body.addname;
+    var $username=req.body.username;
+    var $address=req.body.address;
+    var $cityname=req.body.cityname;
+    var $phone=req.body.phone;
+    var sql="insert into user_address values(null,?,?,?,?,?,0,?);";
+    pool.query(sql,[$uid,$username,$addname,$cityname,$address,$phone],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1");
+        }else{
+            res.send("0");
+        }
+    });
+});
 
 module.exports=router;
