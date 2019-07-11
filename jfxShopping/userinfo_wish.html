@@ -499,10 +499,45 @@
                 </div>-->
             </div>
             <div class="text-right h4 wishTotal">Total: <b>￥0</b></div>
-            <div><button class="js">结算</button></div>
-            <div class="text-left shownum">显示 <b>1条</b></div>
+            <div><button class="js" data-target="#buytolist" data-toggle="modal">结算</button></div>
+            <div class="text-left shownum">显示 <b>条</b></div>
         </div>
-
+        <div id="buytolist" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h3 class="mb-0">确认信息</h3>
+                    </div>
+                    <div class="modal-content sureShopListwidth">
+                        <div class="sureShopList">
+                            <ul class="d-flex flex-column flex-nowrap">
+                                <li class="d-flex flex-nowrap flex-row justify-content-start border-top border-bottom py-1">
+                                    <img src="images/products/BW20G33Z1D001-01/BW20G33Z1D001-01-01.jpg"/>
+                                    <div class="pl-4 pt-4">
+                                        <ul class="shopInfo">
+                                            <li>title</li>
+                                            <li>price</li>
+                                            <li>size</li>
+                                        </ul>
+                                    </div>
+                                    <ul class='text-left mb-3 list-unstyled pt-4 text-right'>
+                                        <li class='address_title'>"+result[i].addressname+"</li>
+                                        <li class='username text-muted'>"+result[i].username+"</li>
+                                        <li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>
+                                        <li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-right h4 wishTotal">Total: <b>￥0</b></div>
+                        <span class="d-none p_idlist"></span>
+                        <div class="text-center">
+                            <button onclick="getPayList()">支付</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!--mainEND-->
 

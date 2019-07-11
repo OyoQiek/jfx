@@ -8,7 +8,7 @@ router.post('/reg',function(req,res){
     var $email=req.body.email;
     var $upwd=req.body.upwd;
     var $sex=req.body.sex;
-    var sql="insert into user values(null,?,?,?,?)";
+    var sql="insert into user values(null,?,?,?,?,0)";
     pool.query(sql,[$uname,$email,$upwd,$sex],function(err,result){
         if(err) throw err;
         if(result.affectedRows>0){
@@ -209,6 +209,21 @@ router.put('/editaddress',(req,res)=>{
             res.send("1");
         }else{
             res.send("0");
+        }
+    });
+});
+
+//充值
+router.put('/chongzhi',(req,res)=>{
+    var $uid=req.body.uid;
+    var $je=req.body.je;
+    var sql="update user set balance=balance+? where uid=?";
+    pool.query(sql,[$je,$uid],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send("1")
+        }else{
+            res.send("0")
         }
     });
 });

@@ -7,7 +7,8 @@ create table user(
     uname varchar(32),
     email varchar(32),
     upwd  varchar(32),
-    sex  char(4)
+    sex  char(4),
+    balance varchar(250)
 );
 
 create table user_address(

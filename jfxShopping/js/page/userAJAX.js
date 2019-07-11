@@ -472,7 +472,7 @@ function addWish() {
                 var result = xhr1.responseText;
                 if (result != 0) {
                     result = JSON.parse(result)[0];
-                    if (result.p_num != 0) {
+                    if (result.p_save != 0) {
                         // 添加到心愿单
                         var xhr = new XMLHttpRequest();
                         xhr.open('put', '/user/addwish', true);
@@ -485,12 +485,13 @@ function addWish() {
                                 if (result1 == 1) {
                                     window.location.href = "userinfo_wish.html?uid=" + uid + "&email=" + email;
                                 } else {
-
+                                    
                                 }
                             }
                         }
                     } else {
                         // 库存不足
+                        alert("库存不足");
                     }
                 }
             }
@@ -516,8 +517,8 @@ function getWish() {
                 for (var i = 0; i < result.length; i++) {
                     var pic = result[i].picadd.split(",");
                     html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                        "<input type='checkbox' name='buy[]' class='select' value='"+ result[i].p_price+"' onclick='getTotal()'/>" +
-                        "<span class='d-none'>"+result[i].pid+"</span>"+
+                        "<input type='checkbox' name='buy[]' class='select' value='"+ result[i].p_price +"|"+ result[i].pid +"' onclick='getTotal()'/>" +
+                        "<span class='d-none p_id'>"+result[i].pid+"</span>"+
                         "<a href='#' class='d-block w-100'><img src='" + pic[0] + "' class='producthide w-100' alt=''></a>" +
                         "<div class='productshow' style='display: none'>" +
                         "<a href='javascript:delWish(" + result[i].wid + ")' class='close'><span>&times;</span></a>" +
@@ -576,6 +577,7 @@ function getPersonInfo() {
             $('#sex').val(result.sex);
             $('#uname').val(result.uname);
             $('#emailreg').val(result.email);
+            $('#balance').val(result.balance);
         }
     }
 }
@@ -937,9 +939,54 @@ function editAddress(){
 
 //选中心愿单商品计算价格
 function getTotal(){
-    var num=$('');
     var text = $("input:checkbox[name='buy[]']:checked").map(function(index,elem) {
         return $(elem).val();;
-    }).get().join(',');
-    console.log("选中的checkbox的值为："+text);
+    }).get().join('|');
+    text=text.split("|");
+    var sum=0;
+    var i=1;
+    var $p_id="";
+    $('.p_idlist').text()
+    if(text[0]!=""){
+        for(var t of text){
+            if(i%2!=0){
+                sum+=parseFloat(t.replace(/[a-z|A-Z|,|￥]/g,""))
+            }else{
+                $p_id+=","+t;
+            }
+            i++;
+        }
+        console.log($p_id);
+        $('.wishTotal b').text("￥"+sum.toFixed(2));
+    }else{
+        $('.wishTotal b').text("￥"+0);
+    }   
+}
+
+//充值金额
+function chongzhi(){
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var je= $('#chongzhije').val();
+    var xhr = new XMLHttpRequest();
+    xhr.open('put', '/user/chongzhi', true);
+    var formdata="uid="+uid+"&je="+je;
+    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    xhr.send(formdata);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if(result==1){
+                $('#chongzhi').modal('hide');
+                getPersonInfo();
+            }else{
+                alert("充值失败");
+            }
+        }
+    }
+}
+
+//获取支付列表
+function getPayList(){
+    
 }

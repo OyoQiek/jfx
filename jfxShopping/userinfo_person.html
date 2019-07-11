@@ -507,8 +507,30 @@
                                 onblur="ckblur('#upwdnotice','55%','1rem','#upwdreg')" />
                         </div>
                         <span>请输入至少含有8个字符的密码</span>
+                        <div class="d-flex flex-column">
+                            <label for="upwd" class="inputnotice" style="top: 10%;font-size:.5rem;" id="balancenotice">余额*</label>
+                            <input type="text" id="balance" value="100" disabled />
+                            <i class="chongzhi" data-target="#chongzhi" data-toggle="modal">充值</i>
+                        </div>
                         <div class="my-5 text-center">
                             <button onclick="changePersonInfo()">保存账户</button>
+                        </div>
+                    </div>
+                    <div id="chongzhi" class="modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header justify-content-center">
+                                    <h3 class="mb-0">账户充值</h3>
+                                </div>
+                                <div class="modal-content">
+                                    <div class="d-flex flex-column align-items-end">
+                                        <input type="text" id="chongzhije" placeholder="充值金额" />
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-dark" onclick="chongzhi()">确认充值</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
