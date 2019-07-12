@@ -53,3 +53,11 @@ create table warehouse(
     p_size varchar(10),
     p_save varchar(20)
 );
+create table dd(
+    ddid int primary key not null auto_increment,
+    address_id int,
+    uid int,
+    pid int,
+    p_color varchar(10),
+    p_size varchar(10)
+);

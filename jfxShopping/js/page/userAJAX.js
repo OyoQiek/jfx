@@ -485,7 +485,7 @@ function addWish() {
                                 if (result1 == 1) {
                                     window.location.href = "userinfo_wish.html?uid=" + uid + "&email=" + email;
                                 } else {
-                                    
+
                                 }
                             }
                         }
@@ -517,16 +517,16 @@ function getWish() {
                 for (var i = 0; i < result.length; i++) {
                     var pic = result[i].picadd.split(",");
                     html += "<div class='col-lg-4 col-6 p-lg-4 p-3' onmouseover=" + "productchange('.producthide','.productshow')" + ">" +
-                        "<input type='checkbox' name='buy[]' class='select' value='"+ result[i].p_price +"|"+ result[i].pid +"' onclick='getTotal()'/>" +
-                        "<span class='d-none p_id'>"+result[i].pid+"</span>"+
+                        "<input type='checkbox' name='buy[]' class='select' value='" + result[i].p_price + "|" + result[i].pid + "' onclick='getTotal()'/>" +
+                        "<span class='d-none p_id'>" + result[i].pid + "</span>" +
                         "<a href='#' class='d-block w-100'><img src='" + pic[0] + "' class='producthide w-100' alt=''></a>" +
                         "<div class='productshow' style='display: none'>" +
                         "<a href='javascript:delWish(" + result[i].wid + ")' class='close'><span>&times;</span></a>" +
                         "<a href='#'><img src='" + pic[1] + "' class='w-100' alt=''></a>" +
                         "<div class='text-center m-auto'>" +
-                        "<p>" + result[i].p_title + "<b class='ml-2'>"+result[i].p_size+"</b></p>" +
+                        "<p>" + result[i].p_title + "<b class='ml-2'>" + result[i].p_size + "</b></p>" +
                         "<p class='wishPrice'>" + result[i].p_price + "</p>" +
-                        ""+
+                        "" +
                         "<input type='hidden' class='color' value='" + result[i].p_color + "'/>" +
                         "<input type='hidden' class='pid' value='" + result[i].pid + "'/>" +
                         "</div>" +
@@ -688,16 +688,16 @@ function searchShop() {
     var url = new URLSearchParams(location.search);
     var uid = url.get("uid");
     var email = url.get("email");
-    var shop=$('#searchcont').val();
+    var shop = $('#searchcont').val();
     console.log(shop);
     var xhr = new XMLHttpRequest();
-    xhr.open('get', '/product/search/'+shop, true);
+    xhr.open('get', '/product/search/' + shop, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             if (result.length) {
-                result=JSON.parse(result);
+                result = JSON.parse(result);
                 window.location.href = "list.html?uid=" + uid + "&email=" + email + "&b_order=" + result[0].b_order + "&s_order=" + result[0].s_order + "&p_sex=2&new=0";
             } else {
                 alert("请求超时");
@@ -707,40 +707,40 @@ function searchShop() {
 }
 
 //地址信息加载
-function showAddress(){
+function showAddress() {
     checklogin();
     var url = new URLSearchParams(location.search);
     var uid = url.get("uid");
     var xhr = new XMLHttpRequest();
-    xhr.open('get', '/user/getaddress/'+uid, true);
+    xhr.open('get', '/user/getaddress/' + uid, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            var html="";
-            if(result!=0){
-                $('.address_none').css("display","none");
-                result=JSON.parse(result);
-                var state="";
-                for(var i=0;i<result.length;i++){
-                    result[i].address_state==0?state="<li class='before'><a href='javascript:defaultAdd("+result[i].address_id+")'>设为默认地址</a></li>":state="<li class='before'>(默认地址)</li>";//盘对是否为默认地址
-                    html+="<li class='d-flex flex-column col-md-4 col-12 mt-3'>"+
-                                "<ul class='text-left mb-3 list-unstyled'>"+
-                                    "<li class='address_title'>"+result[i].addressname+"</li>"+
-                                    "<li class='username text-muted'>"+result[i].username+"</li>"+
-                                    "<li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>"+
-                                    "<li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>"+
-                                "</ul>"+
-                                "<ul class='d-flex flex-row flex-nowrap list-unstyled'>"+
-                                    "<li><a href='#change' data-toggle='modal' onclick='findAddress("+result[i].address_id+")'>编辑</a></li>"+
-                                    "<li class='before'><a href='javascript:delAddress("+result[i].address_id+")'>删除</a></li>"+
-                                    state+//添加设置默认地址按钮
-                                "</ul>"+
-                            "</li>";
+            var html = "";
+            if (result != 0) {
+                $('.address_none').css("display", "none");
+                result = JSON.parse(result);
+                var state = "";
+                for (var i = 0; i < result.length; i++) {
+                    result[i].address_state == 0 ? state = "<li class='before'><a href='javascript:defaultAdd(" + result[i].address_id + ")'>设为默认地址</a></li>" : state = "<li class='before'>(默认地址)</li>"; //盘对是否为默认地址
+                    html += "<li class='d-flex flex-column col-md-4 col-12 mt-3'>" +
+                        "<ul class='text-left mb-3 list-unstyled'>" +
+                        "<li class='address_title'>" + result[i].addressname + "</li>" +
+                        "<li class='username text-muted'>" + result[i].username + "</li>" +
+                        "<li class='address p-0 m-0 text-muted'>" + result[i].cityname + "<br />" + result[i].address + "</li>" +
+                        "<li class='phone text-muted'>电话：<span>" + result[i].phone + "</span></li>" +
+                        "</ul>" +
+                        "<ul class='d-flex flex-row flex-nowrap list-unstyled'>" +
+                        "<li><a href='#change' data-toggle='modal' onclick='findAddress(" + result[i].address_id + ")'>编辑</a></li>" +
+                        "<li class='before'><a href='javascript:delAddress(" + result[i].address_id + ")'>删除</a></li>" +
+                        state + //添加设置默认地址按钮
+                        "</ul>" +
+                        "</li>";
                 }
                 $('.addresslist').html(html);
-            }else{
-                $('.address_none').css("display","block");
+            } else {
+                $('.address_none').css("display", "block");
             }
         }
     }
@@ -748,14 +748,14 @@ function showAddress(){
 
 
 //收货地址添加
-function addAddress(){
+function addAddress() {
     var url = new URLSearchParams(location.search);
     var uid = url.get("uid");
-    var addname=$('#addname').val();
-    var username=$('#username').val();
-    var address=$('#address').val();
-    var cityname=$('#cityname').val();
-    var phone=$('#phone').val();
+    var addname = $('#addname').val();
+    var username = $('#username').val();
+    var address = $('#address').val();
+    var cityname = $('#cityname').val();
+    var phone = $('#phone').val();
     if (!addname) {
         $('.addname_msg').css({
             "display": "block"
@@ -831,18 +831,18 @@ function addAddress(){
             "border-color": "#000"
         })
     }
-    if(!addname || !username || !address || !cityname || !phone){
+    if (!addname || !username || !address || !cityname || !phone) {
         return false;
     }
     var xhr = new XMLHttpRequest();
     xhr.open('post', '/user/addaddress', true);
-    var formdata="uid="+uid+"&addname="+addname+"&username="+username+"&address="+address+"&cityname="+cityname+"&phone="+phone;
-    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    var formdata = "uid=" + uid + "&addname=" + addname + "&username=" + username + "&address=" + address + "&cityname=" + cityname + "&phone=" + phone;
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
     xhr.send(formdata);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result==1){
+            if (result == 1) {
                 $('#addname').val("");
                 $('#username').val("");
                 $('#address').val("");
@@ -850,7 +850,7 @@ function addAddress(){
                 $('#phone').val("");
                 $('#modal').modal('hide');
                 showAddress();
-            }else{
+            } else {
                 alert("添加地址失败");
             }
         }
@@ -858,16 +858,16 @@ function addAddress(){
 }
 
 //删除收货地址
-function delAddress(add_id){
+function delAddress(add_id) {
     var xhr = new XMLHttpRequest();
-    xhr.open('delete', '/user/deladdress/'+add_id, true);
+    xhr.open('delete', '/user/deladdress/' + add_id, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result==1){
+            if (result == 1) {
                 showAddress();
-            }else{
+            } else {
                 alert("删除地址失败");
             }
         }
@@ -875,18 +875,18 @@ function delAddress(add_id){
 }
 
 //设置默认收货地址
-function defaultAdd(add_id){
+function defaultAdd(add_id) {
     var xhr = new XMLHttpRequest();
     xhr.open('put', '/user/setdefaultadd', true);
-    var formdata="add_id="+add_id;
-    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    var formdata = "add_id=" + add_id;
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
     xhr.send(formdata);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result==1){
+            if (result == 1) {
                 showAddress();
-            }else{
+            } else {
                 alert("设置地址失败");
             }
         }
@@ -894,22 +894,22 @@ function defaultAdd(add_id){
 }
 
 //编辑收货地址信息
-function findAddress(add_id){
+function findAddress(add_id) {
     var xhr = new XMLHttpRequest();
-    xhr.open('get', '/user/findaddress/'+add_id, true);
+    xhr.open('get', '/user/findaddress/' + add_id, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result){
-                result=JSON.parse(result)[0];
+            if (result) {
+                result = JSON.parse(result)[0];
                 $('#addname1').val(result.addressname);
                 $('#username1').val(result.username);
                 $('#address1').val(result.address);
                 $('#cityname1').val(result.cityname);
                 $('#phone1').val(result.phone);
                 $('.add_id').val(result.address_id)
-            }else{
+            } else {
                 alert("编辑地址失败");
             }
         }
@@ -917,20 +917,20 @@ function findAddress(add_id){
 }
 
 //编辑收货地址信息
-function editAddress(){
-    var add_id=$('.add_id').val();
+function editAddress() {
+    var add_id = $('.add_id').val();
     var xhr = new XMLHttpRequest();
     xhr.open('put', '/user/editaddress', true);
-    var formdata="add_id="+add_id+"&username="+$('#username1').val()+"&addname="+$('#addname1').val()+"&cityname="+$('#cityname1').val()+"&address="+$('#address1').val()+"&phone="+$('#phone1').val();
-    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    var formdata = "add_id=" + add_id + "&username=" + $('#username1').val() + "&addname=" + $('#addname1').val() + "&cityname=" + $('#cityname1').val() + "&address=" + $('#address1').val() + "&phone=" + $('#phone1').val();
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
     xhr.send(formdata);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result==1){
+            if (result == 1) {
                 $('#change').modal('hide');
                 showAddress();
-            }else{
+            } else {
                 alert("保存地址失败");
             }
         }
@@ -938,48 +938,49 @@ function editAddress(){
 }
 
 //选中心愿单商品计算价格
-function getTotal(){
-    var text = $("input:checkbox[name='buy[]']:checked").map(function(index,elem) {
+function getTotal() {
+    var text = $("input:checkbox[name='buy[]']:checked").map(function (index, elem) {
         return $(elem).val();;
     }).get().join('|');
-    text=text.split("|");
-    var sum=0;
-    var i=1;
-    var $p_id="";
-    $('.p_idlist').text()
-    if(text[0]!=""){
-        for(var t of text){
-            if(i%2!=0){
-                sum+=parseFloat(t.replace(/[a-z|A-Z|,|￥]/g,""))
-            }else{
-                $p_id+=","+t;
+    text = text.split("|");
+    var sum = 0;
+    var i = 1;
+    var $p_id = "";
+
+    if (text[0] != "") {
+        for (var t of text) {
+            if (i % 2 != 0) {
+                sum += parseFloat(t.replace(/[a-z|A-Z|,|￥]/g, ""))
+            } else {
+                $p_id += "," + t;
             }
             i++;
         }
         console.log($p_id);
-        $('.wishTotal b').text("￥"+sum.toFixed(2));
-    }else{
-        $('.wishTotal b').text("￥"+0);
-    }   
+        $('.p_idlist').text($p_id)
+        $('.wishTotal b').text("￥" + sum.toFixed(2));
+    } else {
+        $('.wishTotal b').text("￥" + 0);
+    }
 }
 
 //充值金额
-function chongzhi(){
+function chongzhi() {
     var url = new URLSearchParams(location.search);
     var uid = url.get("uid");
-    var je= $('#chongzhije').val();
+    var je = $('#chongzhije').val();
     var xhr = new XMLHttpRequest();
     xhr.open('put', '/user/chongzhi', true);
-    var formdata="uid="+uid+"&je="+je;
-    xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+    var formdata = "uid=" + uid + "&je=" + je;
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
     xhr.send(formdata);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if(result==1){
+            if (result == 1) {
                 $('#chongzhi').modal('hide');
                 getPersonInfo();
-            }else{
+            } else {
                 alert("充值失败");
             }
         }
@@ -987,6 +988,119 @@ function chongzhi(){
 }
 
 //获取支付列表
-function getPayList(){
-    
+function getPayList() {
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var pidlist = $('.p_idlist').text();
+    pidlist = pidlist.slice(1).split(",");
+    if (pidlist[0] != "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', '/user/getdefaultadd/' + uid, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var result = xhr.responseText;
+                if (result != 0) {
+                    result = JSON.parse(result);
+                    var html = "";
+                    var xhr1 = new XMLHttpRequest();
+                    xhr1.open('get', '/user/getpaylist/' + uid, true);
+                    xhr1.send();
+                    xhr1.onreadystatechange = function () {
+                        if (xhr1.readyState == 4 && xhr1.status == 200) {
+                            var result1 = xhr1.responseText;
+                            if (result1) {
+                                result1 = JSON.parse(result1);
+                                for(var r of result1){
+                                    for(var p of pidlist){
+                                        if(p==r.pid){
+                                            var pic = r.picadd;
+                                            pic = pic.split(",");
+                                            html += "<li class='d-flex flex-nowrap flex-row justify-content-start border-top border-bottom py-1'>" +
+                                            "<img src='" + pic[0] + "'/>" +
+                                            "<div class='pl-4 pt-4'>" +
+                                            "<ul class='shopInfo list-unstyled'>" +
+                                            "<li>" + r.p_title + "</li>" +
+                                            "<li>" + r.p_price + "</li>" +
+                                            "<li class='dd_psize'>," + r.p_size + "</li>" +
+                                            "<li class='d-none dd_pcolor'>," + r.p_color + "</li>" +
+                                            "</ul>" +
+                                            "</div>" +
+                                            "<ul class='text-left mb-3 list-unstyled pt-4 text-right w-25'>" +
+                                            "<li class='address_id d-none'>" + result[0].address_id + "</li>" +
+                                            "<li class='address_title'>" + result[0].addressname + "</li>" +
+                                            "<li class='username text-muted'>" + result[0].username + "</li>" +
+                                            "<li class='address p-0 m-0 text-muted'>" + result[0].cityname + "<br />" + result[0].address + "</li>" +
+                                            "<li class='phone text-muted'>电话：" + result[0].phone + "</li>" +
+                                            "</ul>" +
+                                            "</li>";
+                                        }
+                                    }
+                                }   
+                            } else {
+                                html = "<li>暂无商品</li>"
+                            }
+                            $('.sureShopList ul').html(html);
+                        }
+                    }
+                    $('#buytolist').modal('show');
+                } else {
+                    alert("请添加并设置默认收货地址");
+                }
+            }
+        }
+    } else {
+        //若无商品
+        alert("请先添加商品");
+    }
+}
+
+//支付方法
+function userPay(){
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var email=url.get("email");
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/user/queryuser/' + uid, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            result = JSON.parse(result);
+            if(parseFloat(result.balance)>parseFloat($('.wishTotal b')[0].textContent.slice(1))){
+                var xhr1 = new XMLHttpRequest();
+                xhr1.open('put', '/user/userpay', true);
+                var formdata = "uid=" + uid + "&pay=" + $('.wishTotal b')[0].textContent.slice(1);
+                xhr1.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+                xhr1.send(formdata);
+                xhr1.onreadystatechange = function () {
+                    if (xhr1.readyState == 4 && xhr1.status == 200) {
+                        var result1 = xhr1.responseText;
+                        if(result1==1){
+                            var ddcolor=$('.dd_pcolor').text().slice(1).split(",");
+                            var ddsize=$('.dd_psize').text().slice(1).split(",");
+                            var addid=$('.address_id')[0].textContent;
+                            var pidlist = $('.p_idlist').text();
+                            pidlist = pidlist.slice(1).split(",");
+                            console.log(ddcolor);
+                            var xhr2= new XMLHttpRequest();
+                            xhr2.open('post','/user/insertdd',true);
+                            var formdata = "uid=" + uid +"&addid="+addid+ "&pidlist=" + pidlist+"&ddcolor="+ddcolor+"&ddsize="+ddsize;
+                            xhr2.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+                            xhr2.send(formdata);
+                            xhr2.onreadystatechange=function(){
+                                var result = xhr2.responseText;
+                                if(result==1){
+                                    location.href="userinfo_dd.html?uid="+uid+"&email="+email;
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
+                alert("余额不足");
+            }
+        }
+    }
+
 }
