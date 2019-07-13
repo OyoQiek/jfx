@@ -118,11 +118,11 @@ body{
     transition: all .3s linear;
 }
 .nav_item:hover .nav_cont{
-    height: 378px;
+    height: 400px;
     opacity: 1;
 }
 .nav_item:hover .nav_view{
-    height: 378px;
+    height: 400px;
     opacity: 1;
 }
 .subnav{
