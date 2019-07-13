@@ -280,11 +280,13 @@ router.post('/insertdd',(req,res)=>{
     var $pidlist=req.body.pidlist;
     var $ddsize=req.body.ddsize;
     var $ddcolor=req.body.ddcolor;
-    var sql="insert into dd values(null,?,?,?,?,?)";
+    
     var flag=true;
-    console.log($pidlist);
+    $ddcolor=$ddcolor.split(",");
+    $ddsize=$ddsize.split(",");
     $pidlist=$pidlist.split(",");
     for(var p=0;p<$pidlist.length;p++){
+        var sql="insert into dd values(null,?,?,?,?,?)";
         pool.query(sql,[$addid,$uid,$pidlist[p],$ddcolor[p],$ddsize[p]],(err,result)=>{
             if(err) throw err;
             if(result.affectedRows>0){
@@ -308,6 +310,28 @@ router.post('/insertdd',(req,res)=>{
     }else{
         res.send("0")
     }
+});
+
+//获取订单列表
+router.get('/queryddlist/:uid',(req,res)=>{
+    var $uid=req.params.uid;
+    var sql="select * from dd where uid=?";
+    pool.query(sql,[$uid],(err,result)=>{
+        if(err) throw err;
+        if(result.length){
+            var sql='select * from dd inner join user_address on dd.address_id=user_address.address_id inner join product on dd.pid=product.pid where dd.uid=?';
+            pool.query(sql,[$uid],(err1,result1)=>{
+                if(err1) throw err1;
+                if(result1.length){
+                    res.send(result1);
+                }else{
+                    res.send("0");
+                }
+            });
+        }else{
+            res.send("0")
+        }
+    });
 });
 
 module.exports = router;

@@ -5,6 +5,7 @@ function reg() {
     var upwd = $('#upwdreg').val();
     var sex = $('#sex').val();
     var sure = $('#sure');
+    var reg=/^\w+@\w+\.\w+(.cn)?$/;
     if (sex == "none") {
         $('.sex_msg').css({
             "display": "block"
@@ -43,12 +44,22 @@ function reg() {
             "border-color": "#f00"
         })
     } else {
-        $('.emailreg_msg').css({
-            "display": "none"
-        })
-        $('#emailreg').css({
-            "border-color": "#000"
-        })
+        if(reg.test(email)){
+            $('.emailreg_msg').css({
+                "display": "none"
+            })
+            $('#emailreg').css({
+                "border-color": "#000"
+            })
+        }else{
+            $('.emailreg_msg').css({
+                "display": "block"
+            })
+            $('#emailreg').css({
+                "border-color": "#f00"
+            })
+            return false;
+        }
     }
     if (!upwd || upwd.length < 8) {
         $('.upwdreg_msg').css({
@@ -93,6 +104,7 @@ function reg() {
 function login() {
     var email = $('#emaillogin').val();
     var upwd = $('#upwdlogin').val();
+    var reg=/^\w+@\w+\.\w+(.cn)?$/;
     if (!email) {
         $('.emaillogin_msg').css({
             "display": "block"
@@ -101,12 +113,22 @@ function login() {
             "border-color": "#f00"
         });
     } else {
-        $('.emaillogin_msg').css({
-            "display": "none"
-        });
-        $('#emaillogin').css({
-            "border-color": "#000"
-        });
+        if(reg.test(email)){
+            $('.emaillogin_msg').css({
+                "display": "none"
+            });
+            $('#emaillogin').css({
+                "border-color": "#000"
+            });
+        }else{
+            $('.emaillogin_msg').css({
+                "display": "block"
+            });
+            $('#emaillogin').css({
+                "border-color": "#f00"
+            });
+            return false;
+        }
     }
     if (!upwd) {
         $('.upwdlogin_msg').css({
@@ -166,6 +188,7 @@ function login() {
 function s_login() {
     var email = $('#email').val();
     var upwd = $('#upwd').val();
+    var reg=/^\w+@\w+\.\w+(.cn)?$/;
     if (!email) {
         $('.email_msg').css({
             "display": "block"
@@ -174,12 +197,22 @@ function s_login() {
             "border-color": "#f00"
         });
     } else {
-        $('.email_msg').css({
-            "display": "none"
-        });
-        $('#email').css({
-            "border-color": "#000"
-        });
+        if(reg.test(email)){
+            $('.email_msg').css({
+                "display": "none"
+            });
+            $('#email').css({
+                "border-color": "#000"
+            });
+        }else{
+            $('.email_msg').css({
+                "display": "block"
+            });
+            $('#email').css({
+                "border-color": "#f00"
+            });
+            return false;
+        } 
     }
     if (!upwd) {
         $('.upwd_msg').css({
@@ -1102,5 +1135,69 @@ function userPay(){
             }
         }
     }
+}
 
+//获取订单列表
+function getDdList(){
+    checklogin();
+    var url = new URLSearchParams(location.search);
+    var uid = url.get("uid");
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '/user/queryddlist/' + uid, true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        var result=xhr.responseText;
+        var html="";
+        if(result!=0){
+            result=JSON.parse(result);
+            $('.dd_none').css("display","none");
+            html+="";
+            if(result.length>=15){
+                for(var i=result.length-1;i>=result.length-15;i--){
+                    var pic=result[i].picadd.split(",");
+                    html+="<li class='d-flex flex-nowrap flex-row justify-content-start border-top border-bottom py-1'>"+
+                    "<img src='"+pic[0]+"'/>"+
+                    "<div class='pl-4 pt-4 w-75'>"+
+                        "<ul class='ddInfo d-flex flex-row list-unstyled w-50'>"+
+                            "<li>"+result[i].p_title+"</li>"+
+                            "<li>"+result[i].p_price+"</li>"+
+                            "<li>"+result[i].p_size+"</li>"+
+                       "</ul>"+
+                        "<p class='ddInfo pt-3 w-25'>"+result[i].p_info+"</p>"+
+                    "</div>"+
+                    "<ul class='mb-3 list-unstyled pt-5 text-right'>"+
+                        "<li class='address_title'>"+result[i].addressname+"</li>"+
+                        "<li class='username text-muted'>"+result[i].username+"</li>"+
+                        "<li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>"+
+                        "<li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>"+
+                    "</ul>"+
+                    "</li>";
+                }
+            }else{
+                for(var i=0;i<result.length;i++){
+                    var pic=result[i].picadd.split(",");
+                    html+="<li class='d-flex flex-nowrap flex-row justify-content-start border-top border-bottom py-1'>"+
+                    "<img src='"+pic[0]+"'/>"+
+                    "<div class='pl-4 pt-4 w-75 '>"+
+                        "<ul class='ddInfo d-flex flex-row list-unstyled w-50'>"+
+                            "<li>"+result[i].p_title+"</li>"+
+                            "<li>"+result[i].p_price+"</li>"+
+                            "<li>"+result[i].p_size+"</li>"+
+                       "</ul>"+
+                        "<p class='ddInfo pt-3 w-25'>"+result[i].p_info+"</p>"+
+                    "</div>"+
+                    "<ul class='mb-3 list-unstyled pt-5 text-right'>"+
+                        "<li class='address_title'>"+result[i].addressname+"</li>"+
+                        "<li class='username text-muted'>"+result[i].username+"</li>"+
+                        "<li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>"+
+                        "<li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>"+
+                    "</ul>"+
+                    "</li>";
+                }
+            }
+            $('.dd_list ul').html(html);
+        }else{
+            $('.dd_none').css("display","block");
+        }
+    }
 }

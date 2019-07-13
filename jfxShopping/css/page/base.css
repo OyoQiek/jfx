@@ -105,11 +105,25 @@ body{
 
 }
 .nav_cont{
-    display: none;
+    height: 0;
+    opacity: 0;
     z-index: 999;
+    transition: all .3s linear;
+    overflow: hidden;
+}
+.nav_view{
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all .3s linear;
 }
 .nav_item:hover .nav_cont{
-    display: block;
+    height: 378px;
+    opacity: 1;
+}
+.nav_item:hover .nav_view{
+    height: 378px;
+    opacity: 1;
 }
 .subnav{
     position: absolute !important;

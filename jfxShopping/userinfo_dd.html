@@ -16,7 +16,7 @@
     <script src="js/page/userAJAX.js"></script>
 </head>
 
-<body onload="checklogin()">
+<body onload="getDdList()">
     <div class="bg"></div>
     <div id="navbar" class="container-fluid px-0 smtopborderb">
         <div class="container ">
@@ -476,8 +476,27 @@
         <div class="text-center tab-pane active" id="dd_cont">
             <h5>我的账户</h5>
             <h3>订单</h3>
-            <div class="text-left">
-                <div class="none">当前无订单</div>
+            <div class="text-left dd_list">
+                <div class="dd_none text-center mt-5">当前无订单</div>
+                <ul class="d-flex flex-column flex-nowrap">
+                    <!--<li class="d-flex flex-nowrap flex-row justify-content-start border-top border-bottom py-1">
+                        <img src="images/products/BW20G33Z1D001-01/BW20G33Z1D001-01-01.jpg"/>
+                        <div class="pl-4 pt-4 w-75">
+                            <ul class="ddInfo d-flex flex-row">
+                                <li>title</li>
+                                <li>price</li>
+                                <li>size</li>
+                            </ul>
+                            <p class="ddInfo pt-3">Info</p>
+                        </div>
+                        <ul class='mb-3 list-unstyled pt-5 text-right'>
+                            <li class='address_title'>"+result[i].addressname+"</li>
+                            <li class='username text-muted'>"+result[i].username+"</li>
+                            <li class='address p-0 m-0 text-muted'>"+result[i].cityname+"<br />"+result[i].address+"</li>
+                            <li class='phone text-muted'>电话：<span>"+result[i].phone+"</span></li>
+                        </ul>
+                    </li>-->
+                </ul>
             </div>
         </div>
     </div>

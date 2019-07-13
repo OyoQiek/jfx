@@ -26,8 +26,18 @@
     font-weight: bold;
     margin-bottom: 30px;
 }
+.dd_list ul{
+    max-width: 100%;
+}
+.dd_list ul li img{
+    width: 15%;
+}
+.dd_list ul li div p{
+    padding-left: 1.25rem;
+    font-size: 1rem;
+}
 /*��������*/
-.none{
+.dd_none{
     font-size: .75rem;
     margin-bottom: 80px;
 }
@@ -142,6 +152,13 @@
     font-size: .75rem;
     color: #717171
 }
+.ddInfo{
+    font-size: 1.25rem;
+    color: #717171
+}
+.ddInfo li{
+    padding:0 1.25rem;
+}
 /*������Ϣ*/
 .person_none p{
     color: #717171;
@@ -174,6 +191,9 @@
     border-bottom: 2px solid #000;
 }
 #balance:disabled{
+    background: rgba(0,0,0,0)
+}
+#emailreg:disabled{
     background: rgba(0,0,0,0)
 }
 .chongzhi{
