@@ -529,6 +529,8 @@ function addWish() {
                 }
             }
         }
+    }else{
+        alert("请选择尺码！")
     }
 }
 
